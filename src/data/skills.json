@@ -1,0 +1,7 @@
+{
+  "tiers": [
+    { "stage": "Main stage", "items": ["Python", "JavaScript", "React"] },
+    { "stage": "Also appearing", "items": ["Java", "HTML/CSS", "Firebase"] },
+    { "stage": "New material", "items": ["Next.js"] }
+  ]
+}

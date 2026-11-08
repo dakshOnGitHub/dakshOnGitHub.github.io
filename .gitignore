@@ -1,0 +1,13 @@
+node_modules
+dist
+.impeccable/review
+.impeccable/questions
+.impeccable/mocks
+.impeccable/config.local.json
+graphify-out/cache
+*.log
+
+# local tooling output
+graphify-out/
+.graphifyignore
+.impeccable/hook.cache.json

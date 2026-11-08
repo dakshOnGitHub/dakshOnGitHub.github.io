@@ -1,0 +1,44 @@
+{
+  "name": { "first": "Daksh", "last": "Kalra" },
+  "role": "Computer Science student",
+  "classOf": 2030,
+  "tourStart": 2026,
+  "lookingFor": "Software engineering internship",
+  "nowPlaying": [
+    "Looking for a software engineering internship",
+    "CS at ASU, Barrett, The Honors College",
+    "Learning Next.js",
+    "Building this site in React + Vite"
+  ],
+  "about": [
+    "I'm Daksh, a computer science student at Arizona State University in Barrett, The Honors College, class of 2030. I like building for the web end to end: a React interface up front, Firebase behind it, and JavaScript or Python holding the pieces together.",
+    "I got serious about code in high school. I founded our coding club and competed in FBLA's programming events, where I placed first at state in Coding & Programming. I graduated as valedictorian of Sandra Day O'Connor High School. I'm Java certified, and Next.js is what I'm learning right now.",
+    "I'm looking for an internship where I can ship real features, get my code reviewed by people who care, and get faster at turning an idea into something people actually use."
+  ],
+  "facts": [
+    { "label": "Studying", "value": "Computer Science" },
+    { "label": "School", "value": "ASU, Barrett Honors College" },
+    { "label": "Graduating", "value": "2030" },
+    { "label": "Open to", "value": "SWE internships" }
+  ],
+  "awards": [
+    { "place": "1st", "event": "Coding & Programming", "where": "FBLA State" },
+    { "place": "2nd", "event": "Intro to Coding & Programming", "where": "FBLA State" },
+    { "place": "4th", "event": "Website Coding & Development", "where": "FBLA State" },
+    { "place": "5th", "event": "Coding & Programming", "where": "FBLA State" }
+  ],
+  "honors": [
+    { "title": "Valedictorian", "detail": "Sandra Day O'Connor High School, 2026" },
+    { "title": "Java", "detail": "Certified" },
+    { "title": "Founder", "detail": "Coding Club" },
+    { "title": "Treasurer", "detail": "FBLA" },
+    { "title": "Member", "detail": "Math Honor Society" }
+  ],
+  "contact": {
+    "email": "daksh.kalra777@gmail.com",
+    "links": [
+      { "kind": "github", "label": "GitHub", "url": "https://github.com/dakshOnGitHub" },
+      { "kind": "linkedin", "label": "LinkedIn", "url": "https://www.linkedin.com/in/daksh-kalra-294712444/" }
+    ]
+  }
+}
