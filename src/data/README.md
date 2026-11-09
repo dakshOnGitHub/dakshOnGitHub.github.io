@@ -4,7 +4,7 @@ Everything on the page comes from the JSON files in this folder. Edit them, save
 
 ## projects.json
 
-Starts as `[]`. The **Setlist** (projects) section stays hidden until the array has at least one entry. Add a project like this:
+Starts as `[]`. The **Projects** section stays hidden until the array has at least one entry. Add a project like this:
 
 ```json
 [
@@ -29,18 +29,15 @@ Starts as `[]`. The **Setlist** (projects) section stays hidden until the array 
 
 ## profile.json
 
-Name, about paragraphs, the rotating "Now playing" lines, and contact links.
+Name, the hero `pitch` (one sentence), the `currently` lines (2-3 short facts shown in the hero), about paragraphs, facts, awards, honors, and contact links.
+Awards and honors render in the **Recognition** section; it hides itself if both are empty.
 Links with `"placeholder": true` show a dashed "placeholder" tag **in dev only**. Replace the URL and delete the `placeholder` line.
-To add a resume: put `resume.pdf` in the `public/` folder, then add this to `contact.links`:
-
-```json
-{ "kind": "resume", "label": "Resume (PDF)", "url": "/resume.pdf" }
-```
+The resume link (`"kind": "resume"`) also powers the **Resume** button in the hero. The PDF lives in `public/`.
 
 ## skills.json
 
-Three billing tiers, poster-style. Top tier renders biggest. Move skills between tiers as you get stronger.
+`groups`: one row per level (`Proficient`, `Familiar`, `Learning`). Move skills between groups as you get stronger.
 
 ## timeline.json
 
-"Tour dates". `status` is `"played"` (past), `"now"`, or `"upcoming"`. Entries with `"placeholder": true` get a dev-only tag.
+The **Experience** section. `status` is `"past"` or `"now"` (the current entry gets a "Now" tag). List only things that have happened or are happening; no speculative future entries.

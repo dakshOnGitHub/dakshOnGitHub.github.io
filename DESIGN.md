@@ -1,7 +1,7 @@
 # DESIGN.md — "Signal"
 
 Personal portfolio of Daksh Kalra (CS undergrad, class of 2030, seeking internships).
-Feel: **bold & energetic** — poster-scale type, one hot signal color, motion that points at real content.
+Feel: **professional with a signature** — one poster-scale moment (the name), calm editorial structure everywhere else, one signal color used sparingly.
 This file is the source of truth. Build to it exactly; change it here first.
 
 ---
@@ -45,16 +45,17 @@ Two families only. Self-hosted via Fontsource variable packages (no Google Fonts
 
 | Role | Family | Settings |
 |------|--------|----------|
-| Display (name, section titles) | **Archivo Variable** | `font-stretch: 125%`, weight 800–900, uppercase, `letter-spacing: -0.02em`, `line-height: 0.88` |
-| Body | **Archivo Variable** | `font-stretch: 100%`, weight 400 (600 for emphasis), `line-height: 1.55` |
-| Labels / meta / code | **IBM Plex Mono** | weight 400/500, uppercase for labels, `letter-spacing: 0.06em` |
+| Display (name only) | **Archivo Variable** | `font-stretch: 125%`, weight 900, uppercase, `letter-spacing: -0.02em`, `line-height: 0.88` |
+| Headings (section titles, emails, skill names) | **Archivo Variable** | `font-stretch: 112%`, weight 650–750, mixed case, `letter-spacing: -0.02em`, `line-height: 1.05` |
+| Body | **Archivo Variable** | `font-stretch: 100%`, weight 400 (500–600 for emphasis), `line-height: 1.6` |
+| Labels / meta | **IBM Plex Mono** | weight 500, uppercase, `letter-spacing: 0.06em` |
 
 ### Type scale
 | Token | Size |
 |-------|------|
-| `--fs-hero` | `clamp(2.5rem, 13vw, 10.5rem)` — name; force line break between first/last name |
-| `--fs-h2`   | `clamp(2.25rem, 7vw, 5.5rem)` — section titles |
-| `--fs-h3`   | `clamp(1.25rem, 2.2vw, 1.75rem)` |
+| `--fs-hero` | `clamp(3rem, 12.5vw, 9.5rem)` — name; forced break between first/last name |
+| `--fs-h2`   | `clamp(1.75rem, 2.8vw, 2.375rem)` — section titles |
+| `--fs-h3`   | `clamp(1.125rem, 1.6vw, 1.375rem)` |
 | `--fs-lead` | `clamp(1.125rem, 1.6vw, 1.375rem)` |
 | `--fs-body` | `1rem` (16px) |
 | `--fs-label`| `0.75rem` (12px, mono, uppercase) |
@@ -73,24 +74,31 @@ Rules: body line length max `62ch`. Never animate `font-variation-settings` or `
 | `--s-4` | 24px |
 | `--s-5` | 40px |
 | `--s-6` | 64px |
-| `--s-7` | 96px |
-| `--s-8` | 160px (drops to 96px below 720px) |
+| `--s-7` | 96px (drops to 64px below 720px) |
+| `--s-8` | 160px |
 
 - Page gutter: `clamp(16px, 4vw, 48px)`.
-- Section vertical padding: `--s-8`.
-- Max content width: 1280px; text blocks narrower.
+- Section vertical padding: `--s-7`.
+- Max content width: 1200px; text blocks narrower.
 
 ## 5. Layout principles
-- Asymmetric, poster-like composition. Big type is the primary visual; no stock illustrations, no emoji, no icon-grid "feature" sections.
-- Page structure: **festival poster billing** — hero = headliner, skills = tiered lineup (top tier biggest), timeline = tour dates, contact = "Book Daksh", projects = setlist.
-- Section headers: huge two-line display title only (no small label or index number above it).
-- Hairline rules (`--line`) structure the page instead of boxed cards wherever possible.
+- Professional first: plain section names (About, Recognition, Projects, Skills, Experience, Contact). No metaphor copy.
+- Identity comes from three things only: the wide uppercase name, the signal orange, and the **short accent bar** (32px × 3px) that marks the hero rule and the top of every section head.
+- **Hero:** left-aligned. Mono kicker (role / class of) → name → hairline rule with accent bar → one-line pitch beside a "Currently" block → actions (Email me solid, Resume ghost, GitHub/LinkedIn text links).
+- **Sections:** two-column grid ≥900px. Left column: accent bar, numbered mono label (`01 / About`, number in accent), heading; sticky while the section scrolls. Right column: content. Single column below 900px. Numbering is computed in `App.jsx`, so hidden sections leave no gaps.
+- Hairline rows (`--line`) structure lists (facts, awards, honors, skills, experience, contact links). No boxed cards, no shadows.
+- Recognition (awards + leadership) is its own section right after About.
+- Skills: one row per level (Proficient / Familiar / Learning), mono label left, names right.
+- Experience: past and current entries only; never list speculative future milestones. Current entry gets a small accent "Now" tag.
 - Projects section renders only when `src/data/projects.json` has entries.
 - Icons: inline SVG line icons (1.5px stroke, `currentColor`), only for contact links / UI controls.
 
+### Accent budget
+Orange appears only on: the monogram, the accent bars, section numbers, award places, the "Now" tag/dot, the primary button, link underlines, focus rings and selection. Nothing else.
+
 ## 6. Motion
 
-Lots of motion, always tied to content. All motion is gated behind one global `prefers-reduced-motion` switch (CSS + a JS hook); reduced = instant states, no marquee scroll, no parallax.
+Subtle and brief, gated behind `prefers-reduced-motion` (CSS only; reduced = instant states).
 
 | Token | Value |
 |-------|-------|
@@ -98,14 +106,10 @@ Lots of motion, always tied to content. All motion is gated behind one global `p
 | `--ease-in-out` | `cubic-bezier(0.65, 0, 0.35, 1)` |
 | `--dur-fast` | 180ms |
 | `--dur-med` | 450ms |
-| `--dur-slow` | 900ms |
+| `--dur-slow` | 800ms |
 
-Signature moments:
-1. **Hero entrance** — name letters rise from a mask with stagger (`--dur-slow`, 40ms stagger); accent bar wipes in.
-2. **Skills marquee** — infinite horizontal band of skills on `--surface`; pauses on hover.
-3. **Section titles** — slide up out of a clip mask on scroll into view.
-4. **Timeline** — vertical accent line draws as you scroll; entries fade/slide in.
-5. **Hover** — links get an accent underline that wipes left→right; cards shift 4px with accent edge.
-6. **Status ticker** — "currently" line in hero cycles through real facts from profile data.
+1. **Hero entrance:** name letters rise from a mask (30ms stagger); accent bar wipes in; pitch and actions fade up.
+2. **Scroll reveal:** `[data-reveal]` blocks fade up 16px once.
+3. **Hover:** link underlines wipe left→right; link-row arrows nudge up-right.
 
-Animate only `transform`, `opacity`, `clip-path`. No layout-shifting animation.
+No marquee, no ticker, no scroll-linked effects. Animate only `transform`, `opacity`, `clip-path`.

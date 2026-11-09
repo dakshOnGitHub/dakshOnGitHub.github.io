@@ -1,28 +1,23 @@
-import { Star, SunMoon } from './Icons.jsx'
+import { SunMoon } from './Icons.jsx'
 import { useTheme } from '../hooks/useTheme.js'
 
-export default function TopBar({ profile, showProjects }) {
+export default function TopBar({ profile, nav }) {
   const { theme, toggle } = useTheme()
   const next = theme === 'dark' ? 'light' : 'dark'
-  const initials = profile.name.first[0] + profile.name.last[0]
+  const { first, last } = profile.name
 
   return (
     <header className="topbar">
       <div className="wrap topbar__inner">
-        <a className="topbar__mark" href="#top" aria-label={`${profile.name.first} ${profile.name.last}, back to top`}>
-          <Star size={14} />
-          <span className="mono">{initials}</span>
-          <span className="mono topbar__tour">
-            {profile.tourStart}&ndash;{profile.classOf} Tour
-          </span>
+        <a className="topbar__mark" href="#top" aria-label={`${first} ${last}, back to top`}>
+          <span className="topbar__monogram" aria-hidden="true">{first[0]}{last[0]}</span>
+          <span className="topbar__name">{first} {last}</span>
         </a>
         <nav className="topbar__nav" aria-label="Sections">
           <ul className="topbar__links">
-            <li><a className="mono wipe" href="#about">About</a></li>
-            {showProjects && <li><a className="mono wipe" href="#setlist">Projects</a></li>}
-            <li><a className="mono wipe" href="#lineup">Skills</a></li>
-            <li><a className="mono wipe" href="#tour">Timeline</a></li>
-            <li><a className="mono wipe" href="#book">Contact</a></li>
+            {nav.map((s) => (
+              <li key={s.id}><a className="wipe" href={`#${s.id}`}>{s.label}</a></li>
+            ))}
           </ul>
           <button
             type="button"

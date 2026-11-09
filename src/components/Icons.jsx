@@ -8,14 +8,6 @@ const base = {
   focusable: 'false',
 }
 
-export function Star({ size = 16, className = 'star' }) {
-  return (
-    <svg className={className} width={size} height={size} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <path fill="currentColor" d="M12 1.5l2.9 7.1 7.6.6-5.8 5 1.8 7.4L12 17.6l-6.5 4 1.8-7.4-5.8-5 7.6-.6z" />
-    </svg>
-  )
-}
-
 export function ArrowRight({ size = 16 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" {...base}>

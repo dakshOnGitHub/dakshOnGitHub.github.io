@@ -16,16 +16,10 @@ Unresolved: university name, GitHub/LinkedIn handles, resume PDF, timeline speci
 
 ## Direction contract
 
-THESIS: The site is a gig poster for a tour that has just started — Daksh is the headliner, skills are the supporting bill sized by strength, the timeline is tour dates, contact is the box office. Refuses the category default of hero + about card + icon skill grid + vertical timeline cards.
+THESIS (revised 2026-11-09): Professional portfolio with one signature. The festival-poster metaphor is retired; plain section names so recruiters can scan. Identity is carried by the wide uppercase name, signal orange used sparingly, and a short accent bar that marks the hero rule and every section head.
 
-OWN-WORLD: Warm paper / warm ink grounds, one signal orange used as poster ink (rules, stars, stamps, fills), Archivo at 125% width black uppercase for billing, Plex Mono for venue/date small print, hairline rules, a tilted "TOUR STARTED 2026" stamp. No boxes-with-shadows; the bill is centered stacked type with descending size tiers.
+FIRST VIEWPORT: Top bar with orange DK monogram + name, section nav, theme toggle. Left-aligned hero: mono kicker (role / class of 2030), DAKSH / KALRA at --fs-hero, hairline rule with accent bar, one-sentence pitch beside a "Currently" block, then Email me / Resume / GitHub / LinkedIn.
 
-STORY: Visitor sees who (headliner), what (CS, class of 2030), the lineup (stack), where he has been and is going (tour dates), and how to book him (box office). Leaves remembering the poster and with a contact link one click away.
+FORM: Editorial spec-sheet grid: numbered sticky label + heading left, hairline-row content right. Sections: About, Recognition, (Projects), Skills, Experience, Contact.
 
-FIRST VIEWPORT: Top strip: mono small print "DK · 2026 → 2030 WORLD TOUR" left, theme toggle + "BOOK →" anchor right. Center: "DAKSH / KALRA" across two lines at --fs-hero, letters rising in with stagger; orange star rule under it; "CS STUDENT · CLASS OF 2030" in mono; a "NOW PLAYING:" ticker cycling real facts. Bottom edge: start of the orange billing marquee band. Primary action "BOOK A CHAT" button in accent fill.
-
-FORM: Festival poster billing, position 3 on my ordered list of seven; dealt structure. seed:221fd17ed45e3e46
-
-Signature interaction: billing tiers rise into place on scroll with stagger; tour-date rows wipe in with an orange rule drawing across; box-office email letters swap on hover. Motion grammar: rise-from-mask, rule-draw, stamp-land.
-
-FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+Motion: name rise, accent bar wipe, fade-up reveals. No marquee, ticker, or scroll-linked effects. See DESIGN.md.

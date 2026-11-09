@@ -1,7 +1,26 @@
 {
-  "tiers": [
-    { "stage": "Main stage", "items": ["Python", "JavaScript", "React"] },
-    { "stage": "Also appearing", "items": ["Java", "HTML/CSS", "Firebase"] },
-    { "stage": "New material", "items": ["Next.js"] }
+  "groups": [
+    {
+      "level": "Proficient",
+      "items": [
+        "Python",
+        "JavaScript",
+        "React"
+      ]
+    },
+    {
+      "level": "Familiar",
+      "items": [
+        "Java",
+        "HTML/CSS",
+        "Firebase"
+      ]
+    },
+    {
+      "level": "Learning",
+      "items": [
+        "Next.js"
+      ]
+    }
   ]
 }
