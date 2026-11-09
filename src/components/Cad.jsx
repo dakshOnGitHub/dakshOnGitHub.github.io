@@ -22,12 +22,14 @@ export default function Cad({ models, num }) {
   )
 }
 
-// Shows the still image first. The 3D library (~1MB) and the model file
-// only download after a click, so visitors who just scroll pay nothing.
+// Shows the still image first. The 3D view (a Fusion/Autodesk embed, or a
+// local .glb via model-viewer) only loads after a click, so visitors who just
+// scroll pay nothing.
 function Viewer({ model }) {
   const [state, setState] = useState('idle') // idle | loading | ready | error
 
   async function load() {
+    if (model.embed) return setState('ready')
     setState('loading')
     try {
       await import('@google/model-viewer')
@@ -35,6 +37,20 @@ function Viewer({ model }) {
     } catch {
       setState('error')
     }
+  }
+
+  if (state === 'ready' && model.embed) {
+    return (
+      <div className="cad__stage">
+        <iframe
+          className="cad__viewer"
+          src={model.embed}
+          title={`3D model of ${model.title}`}
+          allow="fullscreen"
+          allowFullScreen
+        />
+      </div>
+    )
   }
 
   if (state === 'ready') {
@@ -59,7 +75,7 @@ function Viewer({ model }) {
       {model.poster
         ? <img className="cad__poster" src={model.poster} alt={`Render of ${model.title}`} loading="lazy" />
         : <div className="cad__poster cad__poster--empty mono" aria-hidden="true">{model.title}</div>}
-      {model.model && (
+      {(model.model || model.embed) && (
         <button type="button" className="btn btn--ghost cad__load" onClick={load} disabled={state === 'loading'}>
           {state === 'loading' ? 'Loading…' : state === 'error' ? 'Retry 3D view' : 'View in 3D'}
         </button>
