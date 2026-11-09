@@ -16,6 +16,16 @@ export default function Projects({ projects, num }) {
               </span>
             </div>
             <p className="project__summary">{p.summary}</p>
+            {p.items?.length > 0 && (
+              <ul className="project__items">
+                {p.items.map((it) => (
+                  <li key={it.name}>
+                    <span className="project__item-name">{it.name}</span>
+                    <span className="project__item-desc">{it.desc}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
             {p.highlight && <p className="project__highlight">{p.highlight}</p>}
             <div className="project__foot">
               {p.stack?.length > 0 && (

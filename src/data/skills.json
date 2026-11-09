@@ -3,6 +3,7 @@
     {
       "level": "Proficient",
       "items": [
+        "Java (certified)",
         "Python",
         "JavaScript",
         "React"
@@ -11,8 +12,8 @@
     {
       "level": "Familiar",
       "items": [
-        "Java",
         "HTML/CSS",
+        "Git",
         "Firebase"
       ]
     },

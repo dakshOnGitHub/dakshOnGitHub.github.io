@@ -1,1 +1,42 @@
-[]
+[
+  {
+    "title": "FBLA competition apps",
+    "status": "shipped",
+    "summary": "Four full-stack web apps I built solo for FBLA programming events. Every one placed at the state or national level.",
+    "items": [
+      {
+        "name": "Financial Tracker",
+        "desc": "Budgeting app with an AI chatbot for spending insights and OCR receipt scanning that logs transactions automatically."
+      },
+      {
+        "name": "Lost & Found",
+        "desc": "Matches a lost-item report to the closest found item, with in-app chat so people can arrange the handoff."
+      },
+      {
+        "name": "Local Business Finder",
+        "desc": "Job board and business directory with coupon filters, an event-vendor application flow, and sentiment scoring on reviews."
+      },
+      {
+        "name": "GPA Calculator",
+        "desc": "Tracks GPA over time and recommends resources to help students raise their grades."
+      }
+    ],
+    "highlight": "Source is moving to GitHub; links coming soon.",
+    "stack": ["React", "JavaScript", "Firebase", "HTML/CSS", "Git"]
+  },
+  {
+    "title": "Neural network from scratch",
+    "year": "2026",
+    "status": "in progress",
+    "summary": "A neural network written in plain Python, with no ML libraries: forward pass, backpropagation, and gradient descent built by hand.",
+    "highlight": "The point is to understand what a framework does under the hood before relying on one.",
+    "stack": ["Python"]
+  },
+  {
+    "title": "Drag reduction with vortex generators",
+    "status": "complete",
+    "summary": "An independent CFD study on the DrivAer fastback car model, testing where vortex generators actually reduce drag.",
+    "highlight": "Compared several placements against a baseline; the best configuration cut the average drag coefficient by about 11%.",
+    "stack": ["CFD simulation"]
+  }
+]

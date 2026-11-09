@@ -37,6 +37,11 @@
   "awards": [
     {
       "place": "1st",
+      "event": "Virtual Business Challenge (13th nationally)",
+      "where": "FBLA State"
+    },
+    {
+      "place": "1st",
       "event": "Coding & Programming",
       "where": "FBLA State"
     },
@@ -66,16 +71,24 @@
       "detail": "Certified"
     },
     {
-      "title": "Founder",
-      "detail": "Coding Club"
+      "title": "New American Scholarship",
+      "detail": "$8,000, Arizona State University"
+    },
+    {
+      "title": "AP Cybersecurity",
+      "detail": "Selected for a limited national pilot program"
+    },
+    {
+      "title": "Founder & President",
+      "detail": "Coding Club: grew it to 20+ members, ran weekly workshops and its first hackathon"
     },
     {
       "title": "Treasurer",
-      "detail": "FBLA"
+      "detail": "FBLA: raised $1,100+ for a 60-member chapter, Gold Champion Chapter"
     },
     {
       "title": "Founder & VP",
-      "detail": "Math Honor Society"
+      "detail": "Math Honor Society: peer tutoring for 25+ members on AP and SAT prep"
     }
   ],
   "contact": {
