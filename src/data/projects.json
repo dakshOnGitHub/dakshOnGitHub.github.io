@@ -21,7 +21,6 @@
         "desc": "Tracks GPA over time and recommends resources to help students raise their grades."
       }
     ],
-    "highlight": "Source is moving to GitHub; links coming soon.",
     "stack": ["React", "JavaScript", "Firebase", "HTML/CSS", "Git"]
   },
   {
