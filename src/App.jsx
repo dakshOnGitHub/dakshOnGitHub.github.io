@@ -1,5 +1,6 @@
 import profile from './data/profile.json'
 import projects from './data/projects.json'
+import cad from './data/cad.json'
 import skills from './data/skills.json'
 import timeline from './data/timeline.json'
 import TopBar from './components/TopBar.jsx'
@@ -7,6 +8,7 @@ import Hero from './components/Hero.jsx'
 import About from './components/About.jsx'
 import Recognition from './components/Recognition.jsx'
 import Projects from './components/Projects.jsx'
+import Cad from './components/Cad.jsx'
 import Skills from './components/Skills.jsx'
 import Experience from './components/Experience.jsx'
 import Contact from './components/Contact.jsx'
@@ -21,6 +23,7 @@ const sections = [
   { id: 'about', label: 'About', show: true },
   { id: 'recognition', label: 'Recognition', show: hasRecognition, nav: false },
   { id: 'projects', label: 'Projects', show: projects.length > 0 },
+  { id: 'cad', label: 'CAD', show: cad.length > 0 },
   { id: 'skills', label: 'Skills', show: true },
   { id: 'experience', label: 'Experience', show: true },
   { id: 'contact', label: 'Contact', show: true },
@@ -40,6 +43,7 @@ export default function App() {
         <About profile={profile} num={num.about} />
         <Recognition awards={profile.awards} honors={profile.honors} num={num.recognition} />
         <Projects projects={projects} num={num.projects} />
+        <Cad models={cad} num={num.cad} />
         <Skills groups={skills.groups} num={num.skills} />
         <Experience entries={timeline} num={num.experience} />
         <Contact contact={profile.contact} num={num.contact} />
