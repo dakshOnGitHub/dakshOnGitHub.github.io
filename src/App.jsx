@@ -23,9 +23,9 @@ const sections = [
   { id: 'about', label: 'About', show: true },
   { id: 'recognition', label: 'Recognition', show: hasRecognition, nav: false },
   { id: 'projects', label: 'Projects', show: projects.length > 0 },
-  { id: 'cad', label: 'CAD', show: cad.length > 0 },
   { id: 'skills', label: 'Skills', show: true },
   { id: 'experience', label: 'Experience', show: true },
+  { id: 'cad', label: 'CAD', show: cad.length > 0 },
   { id: 'contact', label: 'Contact', show: true },
 ].filter((s) => s.show)
 
@@ -43,9 +43,9 @@ export default function App() {
         <About profile={profile} num={num.about} />
         <Recognition awards={profile.awards} honors={profile.honors} num={num.recognition} />
         <Projects projects={projects} num={num.projects} />
-        <Cad models={cad} num={num.cad} />
         <Skills groups={skills.groups} num={num.skills} />
         <Experience entries={timeline} num={num.experience} />
+        <Cad models={cad} num={num.cad} />
         <Contact contact={profile.contact} num={num.contact} />
       </main>
       <Footer profile={profile} />

@@ -1,4 +1,4 @@
-import { ArrowRight, FileText, GitHub, LinkedIn } from './Icons.jsx'
+import { ArrowRight, GitHub, LinkedIn } from './Icons.jsx'
 
 function Letters({ word, offset }) {
   return [...word].map((ch, i) => (
@@ -13,7 +13,6 @@ const socialIcons = { github: GitHub, linkedin: LinkedIn }
 export default function Hero({ profile }) {
   const { first, last } = profile.name
   const { email, links } = profile.contact
-  const resume = links.find((l) => l.kind === 'resume')
   const socials = links.filter((l) => socialIcons[l.kind])
 
   return (
@@ -50,12 +49,6 @@ export default function Hero({ profile }) {
           <a className="btn btn--solid" href={`mailto:${email}`}>
             Email me <ArrowRight />
           </a>
-          {resume && (
-            <a className="btn btn--ghost" href={resume.url} target="_blank" rel="noreferrer">
-              <FileText size={16} /> Resume
-              <span className="sr-only">(PDF, opens in new tab)</span>
-            </a>
-          )}
           <ul className="hero__socials">
             {socials.map((l) => {
               const Icon = socialIcons[l.kind]

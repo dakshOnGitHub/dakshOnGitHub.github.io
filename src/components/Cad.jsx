@@ -74,7 +74,15 @@ function Viewer({ model }) {
     <div className="cad__stage">
       {model.poster
         ? <img className="cad__poster" src={model.poster} alt={`Render of ${model.title}`} loading="lazy" />
-        : <div className="cad__poster cad__poster--empty mono" aria-hidden="true">{model.title}</div>}
+        : (
+          <div className="cad__poster cad__poster--empty" aria-hidden="true">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinejoin="round">
+              <path d="M12 2.5 20.5 7v10L12 21.5 3.5 17V7z" />
+              <path d="M3.5 7 12 11.5 20.5 7M12 11.5v10" />
+            </svg>
+            <span className="mono">Interactive 3D model</span>
+          </div>
+        )}
       {(model.model || model.embed) && (
         <button type="button" className="btn btn--ghost cad__load" onClick={load} disabled={state === 'loading'}>
           {state === 'loading' ? 'Loading…' : state === 'error' ? 'Retry 3D view' : 'View in 3D'}

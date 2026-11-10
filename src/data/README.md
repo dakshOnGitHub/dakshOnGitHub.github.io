@@ -32,7 +32,6 @@ Starts as `[]`. The **Projects** section stays hidden until the array has at lea
 Name, the hero `pitch` (one sentence), the `currently` lines (2-3 short facts shown in the hero), about paragraphs, facts, awards, honors, and contact links.
 Awards and honors render in the **Recognition** section; it hides itself if both are empty.
 Links with `"placeholder": true` show a dashed "placeholder" tag **in dev only**. Replace the URL and delete the `placeholder` line.
-The resume link (`"kind": "resume"`) also powers the **Resume** button in the hero. The PDF lives in `public/`.
 
 ## skills.json
 

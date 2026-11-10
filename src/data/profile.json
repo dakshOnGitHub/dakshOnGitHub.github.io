@@ -103,11 +103,6 @@
         "kind": "linkedin",
         "label": "LinkedIn",
         "url": "https://www.linkedin.com/in/daksh-kalra-294712444/"
-      },
-      {
-        "kind": "resume",
-        "label": "Resume (PDF)",
-        "url": "/Daksh_Kalra_Resume.pdf"
       }
     ]
   }

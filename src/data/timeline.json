@@ -10,11 +10,5 @@
     "title": "Started B.S. in Computer Science, expected 2030",
     "place": "Arizona State University, Barrett, The Honors College",
     "status": "now"
-  },
-  {
-    "year": "2026",
-    "title": "Shipped this portfolio",
-    "place": "React + Vite, deployed on GitHub Pages",
-    "status": "past"
   }
 ]
