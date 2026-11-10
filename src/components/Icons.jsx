@@ -60,6 +60,16 @@ export function GitHub({ size = 22 }) {
   )
 }
 
+export function LeetCode({ size = 22 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
+      <path d="m8 7-5 5 5 5" />
+      <path d="m16 7 5 5-5 5" />
+      <path d="m14 4-4 16" />
+    </svg>
+  )
+}
+
 export function LinkedIn({ size = 22 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" {...base}>

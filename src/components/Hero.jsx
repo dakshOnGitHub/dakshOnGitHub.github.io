@@ -1,4 +1,4 @@
-import { ArrowRight, GitHub, LinkedIn } from './Icons.jsx'
+import { ArrowRight, GitHub, LeetCode, LinkedIn } from './Icons.jsx'
 
 function Letters({ word, offset }) {
   return [...word].map((ch, i) => (
@@ -8,7 +8,7 @@ function Letters({ word, offset }) {
   ))
 }
 
-const socialIcons = { github: GitHub, linkedin: LinkedIn }
+const socialIcons = { github: GitHub, leetcode: LeetCode, linkedin: LinkedIn }
 
 export default function Hero({ profile }) {
   const { first, last } = profile.name

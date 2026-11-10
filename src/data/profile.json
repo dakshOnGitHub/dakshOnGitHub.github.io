@@ -100,6 +100,11 @@
         "url": "https://github.com/dakshOnGitHub"
       },
       {
+        "kind": "leetcode",
+        "label": "LeetCode",
+        "url": "https://leetcode.com/u/DakshOnLeetCode/"
+      },
+      {
         "kind": "linkedin",
         "label": "LinkedIn",
         "url": "https://www.linkedin.com/in/daksh-kalra-294712444/"

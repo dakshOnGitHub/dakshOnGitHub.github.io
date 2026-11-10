@@ -1,9 +1,9 @@
 import { useRef, useState } from 'react'
 import Section from './Section.jsx'
 import Placeholder from './Placeholder.jsx'
-import { ArrowUpRight, Copy, GitHub, LinkedIn } from './Icons.jsx'
+import { ArrowUpRight, Copy, GitHub, LeetCode, LinkedIn } from './Icons.jsx'
 
-const icons = { github: GitHub, linkedin: LinkedIn }
+const icons = { github: GitHub, leetcode: LeetCode, linkedin: LinkedIn }
 
 export default function Contact({ contact, num }) {
   const [copied, setCopied] = useState('')
