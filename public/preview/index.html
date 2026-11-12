@@ -20,39 +20,37 @@
 <style>
   :root {
     --bg: #FFFFFF;
-    --surface: #F5F7FA;
-    --text: #0B1220;
-    --muted: #5B6472;
-    --line: #E3E7ED;
-    --accent: #0F6CBD;
-    --accent-hover: #0A4F8C;
-    --win: #8A5A00;
-    --on-accent: #FFFFFF;
-    --bar: #B9C3CF;
+    --surface: #F4F4F5;
+    --text: #0B0B0C;
+    --muted: #55555E;
+    --line: #E2E2E6;
+    --accent: #C40C12;
+    --accent-hover: #8E080D;
+    --btn: #C40C12;
+    --btn-hover: #8E080D;
+    --win: #8A6A00;
+    --bar: #BDBDC4;
     --nav-bg: rgba(255,255,255,.92);
     --wrap: 1180px;
     --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, "JetBrains Mono", Consolas, monospace;
-    --red: #C42B1C;
-    --yellow: #8A5A00;
-    --green: #107C10;
+    --cut: polygon(10px 0, calc(100% - 10px) 0, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px), 0 10px);
+    --cut-sm: polygon(6px 0, calc(100% - 6px) 0, 100% 6px, 100% calc(100% - 6px), calc(100% - 6px) 100%, 6px 100%, 0 calc(100% - 6px), 0 6px);
     color-scheme: light;
   }
   /* dark is the default; light is opt-in via the toggle */
   :root:not([data-theme="light"]) {
-    --bg: #0F1217;
-    --surface: #171B22;
+    --bg: #09090A;
+    --surface: #141416;
     --text: #FFFFFF;
-    --muted: #C3CAD4;
-    --red: #FF5F57;
-    --yellow: #FEBC2E;
-    --green: #28C840;
-    --line: #2A303A;
-    --accent: #5AAEF2;
-    --accent-hover: #8CC6F6;
-    --win: #FEBC2E;
-    --on-accent: #07121E;
-    --bar: #3F4856;
-    --nav-bg: rgba(15,18,23,.88);
+    --muted: #C4C4CC;
+    --line: #2A2A2F;
+    --accent: #FF4D52;
+    --accent-hover: #FF7A7E;
+    --btn: #D20A11;
+    --btn-hover: #EE1C23;
+    --win: #E3B53C;
+    --bar: #3A3A41;
+    --nav-bg: rgba(9,9,10,.9);
     color-scheme: dark;
   }
   * { box-sizing: border-box; }
@@ -62,7 +60,8 @@
   a:hover { color: var(--accent-hover); }
   .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 20px; }
   h1, h2, h3 { margin: 0; letter-spacing: -0.02em; line-height: 1.12; font-weight: 800; }
-  h1, h2 { color: var(--red); }
+  .round { display: flex; align-items: center; gap: 10px; margin: 0 0 16px; font-size: 14px; font-weight: 700; color: var(--accent); }
+  .round::before { content: ""; width: 24px; height: 3px; background: var(--btn); }
   h2 { font-size: clamp(1.9rem, 4.2vw, 3.4rem); max-width: 20ch; }
   h3 { font-size: 1.2rem; letter-spacing: -0.01em; line-height: 1.25; }
   p { margin: 12px 0 0; }
@@ -72,19 +71,19 @@
   .alt { background: var(--surface); }
   :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 
-  .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 24px; border-radius: 999px; font: inherit; font-size: 16px; font-weight: 600; text-decoration: none; border: 1.5px solid transparent; cursor: pointer; transition: background-color .15s ease, color .15s ease; }
-  .btn.primary { background: var(--accent); color: var(--on-accent); }
-  .btn.primary:hover { background: var(--accent-hover); color: var(--on-accent); }
-  .btn.quiet { color: var(--accent); border-color: var(--line); background: var(--bg); }
-  .btn.quiet:hover { border-color: var(--accent); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 24px; border-radius: 0; clip-path: var(--cut); font: inherit; font-size: 16px; font-weight: 600; text-decoration: none; border: 1.5px solid transparent; cursor: pointer; transition: background-color .15s ease, color .15s ease; }
+  .btn.primary { background: var(--btn); color: #fff; }
+  .btn.primary:hover { background: var(--btn-hover); color: #fff; }
+  .btn.quiet { color: var(--text); background: var(--surface); }
+  .btn.quiet:hover { background: var(--line); color: var(--text); }
 
   /* feedback labels */
-  .tag { position: absolute; top: 16px; left: 16px; background: #A4262C; color: #fff; font: 600 12px/1 system-ui, sans-serif; padding: 8px 12px; border-radius: 4px; z-index: 3; }
+  .tag { position: absolute; top: 16px; left: 16px; background: #4A4A55; color: #fff; font: 600 12px/1 system-ui, sans-serif; padding: 8px 12px; border-radius: 4px; z-index: 3; }
   body.hide-tags .tag { display: none; }
-  .tag-toggle { position: fixed; right: 16px; bottom: 16px; z-index: 30; min-height: 44px; padding: 0 16px; border: 0; border-radius: 999px; background: #A4262C; color: #fff; font: 600 14px system-ui, sans-serif; cursor: pointer; }
+  .tag-toggle { position: fixed; right: 16px; bottom: 16px; z-index: 30; min-height: 44px; padding: 0 16px; border: 0; border-radius: 999px; background: #4A4A55; color: #fff; font: 600 14px system-ui, sans-serif; cursor: pointer; }
 
   /* A nav */
-  .nav { position: sticky; top: 0; z-index: 20; background: var(--nav-bg); backdrop-filter: saturate(1.4) blur(10px); border-bottom: 1px solid var(--line); }
+  .nav { position: sticky; top: 0; z-index: 20; background: var(--nav-bg); backdrop-filter: saturate(1.4) blur(10px); border-bottom: 2px solid var(--btn); }
   .nav .wrap { display: flex; align-items: center; gap: 28px; min-height: 64px; }
   .nav .name { font-weight: 700; color: var(--text); text-decoration: none; letter-spacing: -0.01em; }
   .nav ul { display: flex; gap: 26px; list-style: none; margin: 0 0 0 auto; padding: 0; font-size: 15px; }
@@ -110,7 +109,7 @@
   .flow .lines path { stroke: var(--muted); stroke-opacity: .35; stroke-width: 1.5; stroke-dasharray: 10 8; }
   .flow .lines path.hot { stroke: var(--accent); stroke-opacity: .9; }
   .flow .body { fill: var(--surface); stroke: var(--muted); stroke-width: 1.5; }
-  .proof { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 96px; border-top: 1px solid var(--line); }
+  .proof { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 96px; border-top: 3px solid var(--btn); }
   .proof div { padding: 32px 24px 40px 0; }
   .proof div + div { padding-left: 24px; border-left: 1px solid var(--line); }
   .proof b { display: block; font-size: clamp(2.2rem, 4.4vw, 3.4rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
@@ -120,7 +119,7 @@
   /* C CFD showcase */
   .showcase { display: grid; grid-template-columns: 1fr 1.15fr; gap: 72px; align-items: center; }
   .big-stat { font-size: clamp(4rem, 11vw, 8.5rem); font-weight: 800; letter-spacing: -0.05em; line-height: .9; color: var(--accent); margin: 32px 0 8px; }
-  .chart { background: var(--bg); border-radius: 24px; padding: 40px 36px 32px; border: 1px solid var(--line); }
+  .chart { background: var(--bg); border-radius: 2px; padding: 40px 36px 32px; border: 1px solid var(--line); }
   .chart figcaption { font-size: 15px; color: var(--muted); margin-top: 20px; }
   .bars { display: grid; gap: 28px; }
   .bar-row { display: grid; gap: 10px; }
@@ -132,16 +131,16 @@
   .delta { display: flex; align-items: center; gap: 10px; margin-top: 22px; font-weight: 600; color: var(--accent); font-size: 15px; }
   .delta i { flex: 0 0 auto; width: 28px; height: 2px; background: var(--accent); }
   .meta { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 28px; }
-  .pill { font-size: 14px; padding: 8px 14px; border-radius: 999px; background: var(--surface); color: var(--text); }
+  .pill { font-size: 14px; padding: 8px 14px; border-radius: 0; clip-path: var(--cut-sm); background: var(--surface); color: var(--text); }
   .alt .pill { background: var(--bg); }
 
   /* D FBLA apps */
   .section-head { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: end; margin-bottom: 64px; }
   .apps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-  .app { background: var(--bg); border: 1px solid var(--line); border-radius: 24px; padding: 36px; display: flex; flex-direction: column; min-height: 280px; }
+  .app { background: var(--bg); border: 1px solid var(--line); border-radius: 2px; padding: 36px; display: flex; flex-direction: column; min-height: 280px; }
   .app { transition: border-color .2s ease; }
-  .app:hover { border-color: var(--accent); }
-  .viz { height: 168px; margin: -12px -12px 28px; border-radius: 16px; background: var(--surface); display: grid; place-items: center; }
+  .app:hover { border-color: var(--btn); }
+  .viz { height: 168px; margin: -12px -12px 28px; border-radius: 0; background: var(--surface); display: grid; place-items: center; }
   .viz svg { width: min(78%, 300px); height: auto; overflow: visible; }
   .viz text { font: 600 10px var(--mono); fill: var(--muted); }
   .viz text.b { fill: var(--text); font-size: 12px; }
@@ -151,7 +150,7 @@
   .viz .card { fill: var(--bg); stroke: var(--line); stroke-width: 1.5; }
   .viz .dash { stroke: var(--muted); stroke-dasharray: 4 4; }
   .viz .link { stroke: var(--accent); stroke-width: 2; }
-  .viz .tick { fill: none; stroke: var(--on-accent); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+  .viz .tick { fill: none; stroke: #fff; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
   .viz .grid { stroke: var(--line); stroke-width: 1; fill: none; }
   .viz .line { fill: none; stroke: var(--accent); stroke-width: 2.5; stroke-linejoin: round; }
   .app .kind { font-size: 14px; font-weight: 600; color: var(--muted); }
@@ -162,7 +161,7 @@
 
   /* E CAD */
   .cad { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-  .model { border-radius: 24px; overflow: hidden; background: var(--surface); border: 1px solid var(--line); }
+  .model { border-radius: 2px; overflow: hidden; background: var(--surface); border: 1px solid var(--line); }
   .stage { position: relative; aspect-ratio: 4 / 3; display: grid; place-items: center; background: var(--bg); }
   .stage svg { width: 46%; height: auto; color: #8A96A6; }
   .stage iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
@@ -212,9 +211,9 @@
   .tape li { display: grid; grid-template-columns: 1fr minmax(120px, auto) 1fr; gap: 24px; align-items: baseline; padding: 18px 0; border-bottom: 1px solid var(--line); }
   .tape li > :first-child { text-align: right; }
   .tape .k { text-align: center; font-size: 14px; color: var(--muted); }
-  .tape .head { border-bottom: 2px solid var(--red); }
+  .tape .head { border-bottom: 2px solid var(--btn); }
   .tape .head span:not(.k) { font-size: clamp(1.1rem, 2.2vw, 1.5rem); font-weight: 800; }
-  .tape .head .k { color: var(--red); font-weight: 700; }
+  .tape .head .k { color: var(--accent); font-weight: 700; }
   footer { padding: 32px 0 40px; font-size: 14px; color: var(--muted); position: relative; border-top: 1px solid var(--line); }
   footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
 
@@ -309,6 +308,7 @@
   <span class="tag">C · Showcase: CFD study</span>
   <div class="wrap showcase">
     <div class="reveal">
+      <p class="round">Round 1</p>
       <h2>Cutting drag with vortex generators.</h2>
       <div class="big-stat">−11%</div>
       <p class="lead">An independent CFD study on the DrivAer fastback car model. I tested several vortex-generator placements against a baseline to find where they actually reduce drag.</p>
@@ -336,7 +336,7 @@
   <span class="tag">D · FBLA apps: award-first cards</span>
   <div class="wrap">
     <div class="section-head reveal">
-      <h2>Four apps. Every one placed.</h2>
+      <div><p class="round">Round 2</p><h2>Four apps. Every one placed.</h2></div>
       <p class="lead">Full-stack web apps I built solo for FBLA programming events. Each placed at the State or National level.</p>
     </div>
     <div class="apps">
@@ -360,7 +360,7 @@
   <span class="tag">E · CAD: real 3D models, click to load</span>
   <div class="wrap">
     <div class="section-head reveal">
-      <h2>Designed in 3D.</h2>
+      <div><p class="round">Round 3</p><h2>Designed in 3D.</h2></div>
       <p class="lead">Parts I modeled in Fusion 360. Open either one to spin it around.</p>
     </div>
     <div class="cad">
@@ -397,8 +397,8 @@
   <span class="tag">G · Recognition: dense list</span>
   <div class="wrap">
     <div class="section-head reveal">
-      <h2>Fight record.</h2>
-      <p class="lead">Competition results and honors from high school. Gold marks a title.</p>
+      <div><p class="round">Round 4</p><h2>Recognition.</h2></div>
+      <p class="lead">Competition results and honors from high school.</p>
     </div>
     <div class="rec">
       <div class="reveal">
@@ -431,6 +431,7 @@
   <span class="tag">H · Skills + education</span>
   <div class="wrap two">
     <div class="reveal">
+      <p class="round">Round 5</p>
       <h2>Skills.</h2>
       <div class="skills">
         <div><span class="lvl">Proficient</span><div class="meta"><span class="pill">Java (certified)</span><span class="pill">Python</span><span class="pill">JavaScript</span><span class="pill">React</span></div></div>
@@ -439,6 +440,7 @@
       </div>
     </div>
     <div class="reveal">
+      <p class="round" aria-hidden="true" style="visibility:hidden">Round 5</p>
       <h2>Education.</h2>
       <ul class="edu">
         <li><span class="yr">2026 to 2030</span><h3>B.S. Computer Science</h3><p class="muted">Arizona State University, Barrett, The Honors College</p></li>
@@ -452,6 +454,7 @@
 <section class="alt" id="ufc">
   <span class="tag">K · Personal: UFC</span>
   <div class="wrap reveal">
+    <p class="round">Main event</p>
     <h2>Tale of the tape.</h2>
     <p class="lead">Off the clock I'm watching the UFC. Lightweight is my favorite division, and Islam Makhachev is my favorite fighter.</p>
     <div class="tape-wrap">
@@ -471,6 +474,7 @@
 <section id="contact" class="contact">
   <span class="tag">I · Contact</span>
   <div class="wrap reveal">
+    <p class="round">Post-fight</p>
     <h2>Let's talk.</h2>
     <p class="lead">Hiring for an internship, building something, or want to talk code? Email is the fastest way to reach me.</p>
     <a class="email" href="mailto:daksh.kalra777@gmail.com">daksh.kalra777@gmail.com</a>
