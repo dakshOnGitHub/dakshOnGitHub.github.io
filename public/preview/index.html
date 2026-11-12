@@ -94,8 +94,14 @@
   .hero { padding: 96px 0 0; }
   .hero h1 { font-size: clamp(2.4rem, 4.6vw, 3.6rem); letter-spacing: -0.035em; line-height: 1.05; }
   .hero .eyebrow { margin-top: 10px; font-size: clamp(1.05rem, 1.6vw, 1.25rem); font-weight: 600; color: var(--accent); }
-  .hero .lead { margin-top: 20px; }
+  .hero .lead { margin-top: 20px; max-width: 40ch; }
   .hero .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+  .hero .wrap { position: relative; }
+  .hero .wrap > :not(.flow) { position: relative; z-index: 1; }
+  .flow { position: absolute; right: 0; top: -40px; width: 46%; max-width: 560px; height: auto; pointer-events: none; }
+  .flow .lines path { stroke: var(--muted); stroke-opacity: .35; stroke-width: 1.5; stroke-dasharray: 10 8; }
+  .flow .lines path.hot { stroke: var(--accent); stroke-opacity: .9; }
+  .flow .body { fill: var(--surface); stroke: var(--muted); stroke-width: 1.5; }
   .proof { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 96px; border-top: 1px solid var(--line); }
   .proof div { padding: 32px 24px 40px 0; }
   .proof div + div { padding-left: 24px; border-left: 1px solid var(--line); }
@@ -125,6 +131,21 @@
   .section-head { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: end; margin-bottom: 64px; }
   .apps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
   .app { background: var(--bg); border: 1px solid var(--line); border-radius: 24px; padding: 36px; display: flex; flex-direction: column; min-height: 280px; }
+  .app { transition: border-color .2s ease; }
+  .app:hover { border-color: var(--accent); }
+  .viz { height: 168px; margin: -12px -12px 28px; border-radius: 16px; background: var(--surface); display: grid; place-items: center; }
+  .viz svg { width: min(78%, 300px); height: auto; overflow: visible; }
+  .viz text { font: 600 11px "Instrument Sans", system-ui, sans-serif; fill: var(--muted); }
+  .viz text.b { fill: var(--text); font-size: 12px; }
+  .viz .m { fill: var(--bar); }
+  .viz .a { fill: var(--accent); }
+  .viz .bg { fill: var(--surface); }
+  .viz .card { fill: var(--bg); stroke: var(--line); stroke-width: 1.5; }
+  .viz .dash { stroke: var(--muted); stroke-dasharray: 4 4; }
+  .viz .link { stroke: var(--accent); stroke-width: 2; }
+  .viz .tick { fill: none; stroke: var(--on-accent); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+  .viz .grid { stroke: var(--line); stroke-width: 1; fill: none; }
+  .viz .line { fill: none; stroke: var(--accent); stroke-width: 2.5; stroke-linejoin: round; }
   .app .kind { font-size: 14px; font-weight: 600; color: var(--muted); }
   .app h3 { font-size: clamp(1.6rem, 2.6vw, 2.1rem); letter-spacing: -0.03em; margin-top: 10px; }
   .app p { color: var(--muted); }
@@ -187,6 +208,9 @@
       .fill { animation: grow linear both; animation-timeline: view(); animation-range: entry 10% cover 40%; }
       @keyframes grow { from { transform: scaleX(0.05); } }
     }
+    .flow .lines path { animation: stream 3s linear infinite; }
+    .flow .lines path.hot { animation-duration: 1.8s; }
+    @keyframes stream { to { stroke-dashoffset: -36; } }
   }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
@@ -204,6 +228,7 @@
     .app { padding: 28px; min-height: 0; }
     .chart { padding: 28px 20px 24px; }
     .building .wrap { grid-template-columns: 1fr; gap: 12px; }
+    .flow { position: static; width: 100%; margin: 8px 0 -8px; }
   }
 </style>
 </head>
@@ -235,6 +260,11 @@
 <section class="hero">
   <span class="tag">B · Hero: proof first</span>
   <div class="wrap">
+    <svg class="flow" viewBox="0 0 640 400" fill="none" aria-hidden="true">
+      <g class="lines"><path d="M0 50 C170 50 210 34 300 34 S 430 50 640 50"/><path d="M0 85 C170 85 210 54 300 54 S 430 85 640 85"/><path d="M0 115 C170 115 210 72 300 72 S 430 115 640 115"/><path class="hot" d="M0 142 C170 142 210 88 300 88 S 430 142 640 142"/><path class="hot" d="M0 166 C170 166 210 102 300 102 S 430 166 640 166"/><path d="M0 240 C170 240 210 263 300 263 S 430 240 640 240"/><path d="M0 264 C170 264 210 283 300 283 S 430 264 640 264"/><path d="M0 292 C170 292 210 306 300 306 S 430 292 640 292"/><path d="M0 324 C170 324 210 332 300 332 S 430 324 640 324"/></g>
+      <path class="body" d="M196 224 L204 204 Q236 178 286 170 L326 168 Q376 172 404 206 L408 224 Z"/>
+      <circle class="body" cx="236" cy="226" r="13"/><circle class="body" cx="372" cy="226" r="13"/>
+    </svg>
     <h1>Daksh Kalra</h1>
     <p class="eyebrow">Computer Science at ASU Barrett, class of 2030</p>
     <p class="lead">Full-stack web apps in React and Firebase, an aerodynamics study in CFD, and a neural network written from scratch. Looking for a software engineering internship.</p>
@@ -289,10 +319,16 @@
       <p class="lead">Full-stack web apps I built solo for FBLA programming events. Each placed at the State or National level.</p>
     </div>
     <div class="apps">
-      <article class="app reveal"><span class="kind">Personal finance</span><h3>Financial Tracker</h3><p>Budgeting app with an AI chatbot for spending insights and OCR receipt scanning that logs transactions automatically.</p><div class="meta"><span class="pill">AI chatbot</span><span class="pill">OCR</span></div></article>
-      <article class="app reveal"><span class="kind">Community</span><h3>Lost &amp; Found</h3><p>Matches a lost-item report to the closest found item, with in-app chat so people can arrange the handoff.</p><div class="meta"><span class="pill">Matching algorithm</span><span class="pill">In-app chat</span></div></article>
-      <article class="app reveal"><span class="kind">Local business</span><h3>Local Business Finder</h3><p>Job board and business directory with coupon filters, an event-vendor application flow, and sentiment scoring on reviews.</p><div class="meta"><span class="pill">Sentiment analysis</span><span class="pill">Filters</span></div></article>
-      <article class="app reveal"><span class="kind">Education</span><h3>GPA Calculator</h3><p>Tracks GPA over time and recommends resources to help students raise their grades.</p><div class="meta"><span class="pill">Charts</span><span class="pill">Recommendations</span></div></article>
+      <article class="app reveal"><div class="viz"><svg viewBox="0 0 240 120" aria-hidden="true"><line class="dash" x1="12" y1="40" x2="228" y2="40"/><text x="228" y="32" text-anchor="end">Budget</text>
+<rect class="m" x="20" y="62" width="20" height="46" rx="4"/><rect class="m" x="50" y="50" width="20" height="58" rx="4"/><rect class="m" x="80" y="72" width="20" height="36" rx="4"/><rect class="a" x="110" y="30" width="20" height="78" rx="4"/><rect class="m" x="140" y="58" width="20" height="50" rx="4"/><rect class="m" x="170" y="68" width="20" height="40" rx="4"/><rect class="m" x="200" y="54" width="20" height="54" rx="4"/></svg></div><span class="kind">Personal finance</span><h3>Balance Check</h3><p>Budgeting app with an AI chatbot for spending insights and OCR receipt scanning that logs transactions automatically.</p><div class="meta"><span class="pill">AI chatbot</span><span class="pill">OCR</span></div></article>
+      <article class="app reveal"><div class="viz"><svg viewBox="0 0 240 120" aria-hidden="true"><rect class="card" x="8" y="34" width="88" height="52" rx="10"/><text x="20" y="56">Lost</text><text class="b" x="20" y="74">Blue backpack</text>
+<rect class="card" x="144" y="34" width="88" height="52" rx="10"/><text x="156" y="56">Found</text><text class="b" x="156" y="74">Blue backpack</text>
+<line class="link" x1="96" y1="60" x2="144" y2="60"/><circle class="a" cx="120" cy="60" r="12"/><path class="tick" d="M114 60 l4 4 l8 -8"/></svg></div><span class="kind">Lost and found</span><h3>FoundIt</h3><p>Matches a lost-item report to the closest found item, with in-app chat so people can arrange the handoff.</p><div class="meta"><span class="pill">Matching algorithm</span><span class="pill">In-app chat</span></div></article>
+      <article class="app reveal"><div class="viz"><svg viewBox="0 0 240 120" aria-hidden="true"><path class="grid" d="M0 30 H240 M0 70 H240 M0 105 H240 M50 0 V120 M120 0 V120 M190 0 V120"/>
+<path class="m" d="M60 58 a12 12 0 1 1 24 0 c0 10 -12 22 -12 22 s-12 -12 -12 -22z"/><path class="a" d="M118 44 a14 14 0 1 1 28 0 c0 12 -14 26 -14 26 s-14 -14 -14 -26z"/><path class="m" d="M168 84 a12 12 0 1 1 24 0 c0 10 -12 22 -12 22 s-12 -12 -12 -22z"/>
+<circle class="bg" cx="132" cy="44" r="5"/></svg></div><span class="kind">Local business</span><h3>Findr</h3><p>Job board and business directory with coupon filters, an event-vendor application flow, and sentiment scoring on reviews.</p><div class="meta"><span class="pill">Sentiment analysis</span><span class="pill">Filters</span></div></article>
+      <article class="app reveal"><div class="viz"><svg viewBox="0 0 240 120" aria-hidden="true"><path class="grid" d="M10 100 H230 M10 70 H230 M10 40 H230"/><polyline class="line" points="20,92 70,80 120,74 170,52 220,30"/>
+<circle class="m" cx="20" cy="92" r="5"/><circle class="m" cx="70" cy="80" r="5"/><circle class="m" cx="120" cy="74" r="5"/><circle class="m" cx="170" cy="52" r="5"/><circle class="a" cx="220" cy="30" r="7"/></svg></div><span class="kind">Education</span><h3>GPA Calculator</h3><p>Tracks GPA over time and recommends resources to help students raise their grades.</p><div class="meta"><span class="pill">Charts</span><span class="pill">Recommendations</span></div></article>
     </div>
     <div class="stackline">Built with <span class="pill">React</span><span class="pill">JavaScript</span><span class="pill">Firebase</span><span class="pill">Material UI</span><span class="pill">Git</span></div>
   </div>

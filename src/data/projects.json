@@ -5,15 +5,15 @@
     "summary": "Four full-stack web apps I built solo for FBLA programming events. Every one placed at the state or national level.",
     "items": [
       {
-        "name": "Financial Tracker",
+        "name": "Balance Check",
         "desc": "Budgeting app with an AI chatbot for spending insights and OCR receipt scanning that logs transactions automatically."
       },
       {
-        "name": "Lost & Found",
+        "name": "FoundIt",
         "desc": "Matches a lost-item report to the closest found item, with in-app chat so people can arrange the handoff."
       },
       {
-        "name": "Local Business Finder",
+        "name": "Findr",
         "desc": "Job board and business directory with coupon filters, an event-vendor application flow, and sentiment scoring on reviews."
       },
       {
