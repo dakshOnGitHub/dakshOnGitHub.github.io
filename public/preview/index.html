@@ -26,7 +26,7 @@
     --line: #E3E7ED;
     --accent: #0F6CBD;
     --accent-hover: #0A4F8C;
-    --win: #107C10;
+    --win: #8A5A00;
     --on-accent: #FFFFFF;
     --bar: #B9C3CF;
     --nav-bg: rgba(255,255,255,.92);
@@ -49,7 +49,7 @@
     --line: #2A303A;
     --accent: #5AAEF2;
     --accent-hover: #8CC6F6;
-    --win: #5CC45C;
+    --win: #FEBC2E;
     --on-accent: #07121E;
     --bar: #3F4856;
     --nav-bg: rgba(15,18,23,.88);
@@ -62,7 +62,7 @@
   a:hover { color: var(--accent-hover); }
   .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 20px; }
   h1, h2, h3 { margin: 0; letter-spacing: -0.02em; line-height: 1.12; font-weight: 800; }
-  .t-red { color: var(--red); } .t-yellow { color: var(--yellow); } .t-green { color: var(--green); }
+  h1, h2 { color: var(--red); }
   h2 { font-size: clamp(1.9rem, 4.2vw, 3.4rem); max-width: 20ch; }
   h3 { font-size: 1.2rem; letter-spacing: -0.01em; line-height: 1.25; }
   p { margin: 12px 0 0; }
@@ -205,6 +205,16 @@
   .profiles { display: flex; flex-wrap: wrap; gap: 28px; margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--line); font-weight: 600; }
   .profiles a { text-decoration: none; }
 
+  /* K tale of the tape */
+  .tape-wrap { position: relative; margin-top: 56px; }
+  .octagon { position: absolute; left: 50%; top: 50%; width: min(520px, 90%); transform: translate(-50%, -50%); color: var(--line); pointer-events: none; }
+  .tape { position: relative; list-style: none; margin: 0; padding: 0; max-width: 860px; margin-inline: auto; }
+  .tape li { display: grid; grid-template-columns: 1fr minmax(120px, auto) 1fr; gap: 24px; align-items: baseline; padding: 18px 0; border-bottom: 1px solid var(--line); }
+  .tape li > :first-child { text-align: right; }
+  .tape .k { text-align: center; font-size: 14px; color: var(--muted); }
+  .tape .head { border-bottom: 2px solid var(--red); }
+  .tape .head span:not(.k) { font-size: clamp(1.1rem, 2.2vw, 1.5rem); font-weight: 800; }
+  .tape .head .k { color: var(--red); font-weight: 700; }
   footer { padding: 32px 0 40px; font-size: 14px; color: var(--muted); position: relative; border-top: 1px solid var(--line); }
   footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
 
@@ -236,6 +246,9 @@
     .app { padding: 28px; min-height: 0; }
     .chart { padding: 28px 20px 24px; }
     .building .wrap { grid-template-columns: 1fr; gap: 12px; }
+    .tape li { grid-template-columns: 1fr; gap: 2px; text-align: left; padding: 14px 0; }
+    .tape li > :first-child, .tape .k { text-align: left; }
+    .tape .k { order: -1; }
     .flow { position: static; width: 100%; margin: 8px 0 -8px; }
   }
 </style>
@@ -273,7 +286,7 @@
       <path class="body" d="M196 224 L204 204 Q236 178 286 170 L326 168 Q376 172 404 206 L408 224 Z"/>
       <circle class="body" cx="236" cy="226" r="13"/><circle class="body" cx="372" cy="226" r="13"/>
     </svg>
-    <h1 class="t-green">Daksh Kalra</h1>
+    <h1>Daksh Kalra</h1>
     <p class="eyebrow">Computer Science at ASU Barrett, class of 2030</p>
     <p class="lead">Full-stack web apps in React and Firebase, an aerodynamics study in CFD, and a neural network written from scratch. Looking for a software engineering internship.</p>
     <div class="actions">
@@ -296,7 +309,7 @@
   <span class="tag">C · Showcase: CFD study</span>
   <div class="wrap showcase">
     <div class="reveal">
-      <h2 class="t-yellow">Cutting drag with vortex generators.</h2>
+      <h2>Cutting drag with vortex generators.</h2>
       <div class="big-stat">−11%</div>
       <p class="lead">An independent CFD study on the DrivAer fastback car model. I tested several vortex-generator placements against a baseline to find where they actually reduce drag.</p>
       <div class="meta"><span class="pill">SimScale</span><span class="pill">CFD simulation</span><span class="pill">Independent research</span></div>
@@ -323,7 +336,7 @@
   <span class="tag">D · FBLA apps: award-first cards</span>
   <div class="wrap">
     <div class="section-head reveal">
-      <h2 class="t-green">Four apps. Every one placed.</h2>
+      <h2>Four apps. Every one placed.</h2>
       <p class="lead">Full-stack web apps I built solo for FBLA programming events. Each placed at the State or National level.</p>
     </div>
     <div class="apps">
@@ -347,7 +360,7 @@
   <span class="tag">E · CAD: real 3D models, click to load</span>
   <div class="wrap">
     <div class="section-head reveal">
-      <h2 class="t-red">Designed in 3D.</h2>
+      <h2>Designed in 3D.</h2>
       <p class="lead">Parts I modeled in Fusion 360. Open either one to spin it around.</p>
     </div>
     <div class="cad">
@@ -384,8 +397,8 @@
   <span class="tag">G · Recognition: dense list</span>
   <div class="wrap">
     <div class="section-head reveal">
-      <h2 class="t-yellow">Recognition.</h2>
-      <p class="lead">Competition results and honors from high school.</p>
+      <h2>Fight record.</h2>
+      <p class="lead">Competition results and honors from high school. Gold marks a title.</p>
     </div>
     <div class="rec">
       <div class="reveal">
@@ -418,7 +431,7 @@
   <span class="tag">H · Skills + education</span>
   <div class="wrap two">
     <div class="reveal">
-      <h2 class="t-green">Skills.</h2>
+      <h2>Skills.</h2>
       <div class="skills">
         <div><span class="lvl">Proficient</span><div class="meta"><span class="pill">Java (certified)</span><span class="pill">Python</span><span class="pill">JavaScript</span><span class="pill">React</span></div></div>
         <div><span class="lvl">Familiar</span><div class="meta"><span class="pill">HTML/CSS</span><span class="pill">Git</span><span class="pill">Firebase</span></div></div>
@@ -426,10 +439,29 @@
       </div>
     </div>
     <div class="reveal">
-      <h2 class="t-red">Education.</h2>
+      <h2>Education.</h2>
       <ul class="edu">
         <li><span class="yr">2026 to 2030</span><h3>B.S. Computer Science</h3><p class="muted">Arizona State University, Barrett, The Honors College</p></li>
         <li><span class="yr">2026</span><h3>Valedictorian</h3><p class="muted">Sandra Day O'Connor High School</p></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- K -->
+<section class="alt" id="ufc">
+  <span class="tag">K · Personal: UFC</span>
+  <div class="wrap reveal">
+    <h2>Tale of the tape.</h2>
+    <p class="lead">Off the clock I'm watching the UFC. Lightweight is my favorite division, and Islam Makhachev is my favorite fighter.</p>
+    <div class="tape-wrap">
+      <svg class="octagon" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M59 4 H141 L196 59 V141 L141 196 H59 L4 141 V59 Z"/><path d="M65 18 H135 L182 65 V135 L135 182 H65 L18 135 V65 Z"/></svg>
+      <ul class="tape">
+        <li class="head"><span>Daksh Kalra</span><span class="k">vs</span><span>Islam Makhachev</span></li>
+        <li><span>Software</span><span class="k">Division</span><span>Lightweight, 155 lb</span></li>
+        <li><span>Java, Python, React</span><span class="k">Base</span><span>Sambo, wrestling</span></li>
+        <li><span>Tempe, AZ</span><span class="k">Camp</span><span>Dagestan</span></li>
+        <li><span>Build, test, repeat</span><span class="k">Game plan</span><span>Pressure, takedowns, top control</span></li>
       </ul>
     </div>
   </div>
@@ -439,7 +471,7 @@
 <section id="contact" class="contact">
   <span class="tag">I · Contact</span>
   <div class="wrap reveal">
-    <h2 class="t-green">Let's talk.</h2>
+    <h2>Let's talk.</h2>
     <p class="lead">Hiring for an internship, building something, or want to talk code? Email is the fastest way to reach me.</p>
     <a class="email" href="mailto:daksh.kalra777@gmail.com">daksh.kalra777@gmail.com</a>
     <div class="actions">
