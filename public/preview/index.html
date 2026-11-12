@@ -101,14 +101,8 @@
   .hero { padding: 96px 0 0; }
   .hero h1 { font-size: clamp(2.2rem, 4.2vw, 3.4rem); letter-spacing: -0.03em; line-height: 1.05; }
   .hero .eyebrow { margin-top: 10px; font-size: clamp(1.05rem, 1.6vw, 1.25rem); font-weight: 600; color: var(--accent); }
-  .hero .lead { margin-top: 20px; max-width: 40ch; }
+  .hero .lead { margin-top: 20px; max-width: 58ch; }
   .hero .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
-  .hero .wrap { position: relative; }
-  .hero .wrap > :not(.flow) { position: relative; z-index: 1; }
-  .flow { position: absolute; right: 0; top: -40px; width: 46%; max-width: 560px; height: auto; pointer-events: none; }
-  .flow .lines path { stroke: var(--muted); stroke-opacity: .35; stroke-width: 1.5; stroke-dasharray: 10 8; }
-  .flow .lines path.hot { stroke: var(--accent); stroke-opacity: .9; }
-  .flow .body { fill: var(--surface); stroke: var(--muted); stroke-width: 1.5; }
   .proof { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 96px; border-top: 3px solid var(--btn); }
   .proof div { padding: 32px 24px 40px 0; }
   .proof div + div { padding-left: 24px; border-left: 1px solid var(--line); }
@@ -204,16 +198,6 @@
   .profiles { display: flex; flex-wrap: wrap; gap: 28px; margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--line); font-weight: 600; }
   .profiles a { text-decoration: none; }
 
-  /* K tale of the tape */
-  .tape-wrap { position: relative; margin-top: 56px; }
-  .octagon { position: absolute; left: 50%; top: 50%; width: min(520px, 90%); transform: translate(-50%, -50%); color: var(--line); pointer-events: none; }
-  .tape { position: relative; list-style: none; margin: 0; padding: 0; max-width: 860px; margin-inline: auto; }
-  .tape li { display: grid; grid-template-columns: 1fr minmax(120px, auto) 1fr; gap: 24px; align-items: baseline; padding: 18px 0; border-bottom: 1px solid var(--line); }
-  .tape li > :first-child { text-align: right; }
-  .tape .k { text-align: center; font-size: 14px; color: var(--muted); }
-  .tape .head { border-bottom: 2px solid var(--btn); }
-  .tape .head span:not(.k) { font-size: clamp(1.1rem, 2.2vw, 1.5rem); font-weight: 800; }
-  .tape .head .k { color: var(--accent); font-weight: 700; }
   footer { padding: 32px 0 40px; font-size: 14px; color: var(--muted); position: relative; border-top: 1px solid var(--line); }
   footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
 
@@ -225,9 +209,6 @@
       .fill { animation: grow linear both; animation-timeline: view(); animation-range: entry 10% cover 40%; }
       @keyframes grow { from { transform: scaleX(0.05); } }
     }
-    .flow .lines path { animation: stream 3s linear infinite; }
-    .flow .lines path.hot { animation-duration: 1.8s; }
-    @keyframes stream { to { stroke-dashoffset: -36; } }
   }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
@@ -245,10 +226,6 @@
     .app { padding: 28px; min-height: 0; }
     .chart { padding: 28px 20px 24px; }
     .building .wrap { grid-template-columns: 1fr; gap: 12px; }
-    .tape li { grid-template-columns: 1fr; gap: 2px; text-align: left; padding: 14px 0; }
-    .tape li > :first-child, .tape .k { text-align: left; }
-    .tape .k { order: -1; }
-    .flow { position: static; width: 100%; margin: 8px 0 -8px; }
   }
 </style>
 </head>
@@ -280,11 +257,6 @@
 <section class="hero">
   <span class="tag">B · Hero: proof first</span>
   <div class="wrap">
-    <svg class="flow" viewBox="0 0 640 400" fill="none" aria-hidden="true">
-      <g class="lines"><path d="M0 50 C170 50 210 34 300 34 S 430 50 640 50"/><path d="M0 85 C170 85 210 54 300 54 S 430 85 640 85"/><path d="M0 115 C170 115 210 72 300 72 S 430 115 640 115"/><path class="hot" d="M0 142 C170 142 210 88 300 88 S 430 142 640 142"/><path class="hot" d="M0 166 C170 166 210 102 300 102 S 430 166 640 166"/><path d="M0 240 C170 240 210 263 300 263 S 430 240 640 240"/><path d="M0 264 C170 264 210 283 300 283 S 430 264 640 264"/><path d="M0 292 C170 292 210 306 300 306 S 430 292 640 292"/><path d="M0 324 C170 324 210 332 300 332 S 430 324 640 324"/></g>
-      <path class="body" d="M196 224 L204 204 Q236 178 286 170 L326 168 Q376 172 404 206 L408 224 Z"/>
-      <circle class="body" cx="236" cy="226" r="13"/><circle class="body" cx="372" cy="226" r="13"/>
-    </svg>
     <h1>Daksh Kalra</h1>
     <p class="eyebrow">Computer Science at ASU Barrett, class of 2030</p>
     <p class="lead">Full-stack web apps in React and Firebase, an aerodynamics study in CFD, and a neural network written from scratch. Looking for a software engineering internship.</p>
@@ -445,26 +417,6 @@
       <ul class="edu">
         <li><span class="yr">2026 to 2030</span><h3>B.S. Computer Science</h3><p class="muted">Arizona State University, Barrett, The Honors College</p></li>
         <li><span class="yr">2026</span><h3>Valedictorian</h3><p class="muted">Sandra Day O'Connor High School</p></li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- K -->
-<section class="alt" id="ufc">
-  <span class="tag">K · Personal: UFC</span>
-  <div class="wrap reveal">
-    <p class="round">Main event</p>
-    <h2>Tale of the tape.</h2>
-    <p class="lead">Off the clock I'm watching the UFC. Lightweight is my favorite division, and Islam Makhachev is my favorite fighter.</p>
-    <div class="tape-wrap">
-      <svg class="octagon" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M59 4 H141 L196 59 V141 L141 196 H59 L4 141 V59 Z"/><path d="M65 18 H135 L182 65 V135 L135 182 H65 L18 135 V65 Z"/></svg>
-      <ul class="tape">
-        <li class="head"><span>Daksh Kalra</span><span class="k">vs</span><span>Islam Makhachev</span></li>
-        <li><span>Software</span><span class="k">Division</span><span>Lightweight, 155 lb</span></li>
-        <li><span>Java, Python, React</span><span class="k">Base</span><span>Sambo, wrestling</span></li>
-        <li><span>Tempe, AZ</span><span class="k">Camp</span><span>Dagestan</span></li>
-        <li><span>Build, test, repeat</span><span class="k">Game plan</span><span>Pressure, takedowns, top control</span></li>
       </ul>
     </div>
   </div>
