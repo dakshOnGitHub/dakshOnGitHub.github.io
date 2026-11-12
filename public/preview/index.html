@@ -7,386 +7,390 @@
 <title>Portfolio Preview</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..900&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap&subset=latin" rel="stylesheet" />
 <style>
   :root {
-    /* two colors that work together */
-    --navy: #0B2545;
-    --navy-2: #13315C;
-    --sky: #DCE8F5;
-    --sky-2: #C4D7EC;
-    /* the one that shocks */
-    --signal: #FFC93C;
-    --white: #FFFFFF;
-    --ink: #0B2545;
-    --muted: #4A5B70;
-    --on-navy-muted: #A9BCD3;
-    --wrap: 1120px;
+    --bg: #FFFFFF;
+    --surface: #F5F7FA;
+    --text: #0B1220;
+    --muted: #5B6472;
+    --line: #E3E7ED;
+    --accent: #0F6CBD;
+    --accent-hover: #0A4F8C;
+    --win: #107C10;
+    --wrap: 1180px;
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  body { margin: 0; background: var(--white); color: var(--ink); font: 17px/1.6 "Archivo", system-ui, sans-serif; font-stretch: 100%; }
-  a { color: inherit; }
-  img { max-width: 100%; }
-  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 16px; }
-  section, header, footer { position: relative; }
-  .pad { padding: 88px 0; }
-  h1, h2, h3 { margin: 0; line-height: 1.08; font-stretch: 112%; letter-spacing: -0.02em; }
-  h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: 32px; }
-  h3 { font-size: 1.2rem; font-weight: 700; }
-  p { margin: 8px 0 0; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 18px/1.6 "Instrument Sans", "Segoe UI", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: var(--accent); }
+  a:hover { color: var(--accent-hover); }
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 20px; }
+  h1, h2, h3 { margin: 0; letter-spacing: -0.03em; line-height: 1.04; font-weight: 650; }
+  h2 { font-size: clamp(2.4rem, 5.6vw, 4.5rem); max-width: 16ch; }
+  h3 { font-size: 1.35rem; letter-spacing: -0.015em; line-height: 1.2; }
+  p { margin: 12px 0 0; }
   .muted { color: var(--muted); }
-  .on-navy { background: var(--navy); color: var(--white); }
-  .on-navy .muted { color: var(--on-navy-muted); }
-  .on-sky { background: var(--sky); }
+  .lead { font-size: clamp(1.1rem, 1.8vw, 1.35rem); color: var(--muted); max-width: 58ch; }
+  section { padding: 140px 0; position: relative; }
+  .alt { background: var(--surface); }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 
-  /* section heading: a short signal bar marks every section start */
-  .head { display: flex; align-items: end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 32px; }
-  .head h2 { margin: 0; padding-top: 18px; position: relative; }
-  .head h2::before { content: ""; position: absolute; top: 0; left: 0; width: 48px; height: 6px; background: var(--signal); }
-  .head p { margin: 0; max-width: 46ch; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 24px; border-radius: 999px; font: inherit; font-size: 16px; font-weight: 600; text-decoration: none; border: 1.5px solid transparent; cursor: pointer; transition: background-color .15s ease, color .15s ease; }
+  .btn.primary { background: var(--accent); color: #fff; }
+  .btn.primary:hover { background: var(--accent-hover); color: #fff; }
+  .btn.quiet { color: var(--accent); border-color: var(--line); background: var(--bg); }
+  .btn.quiet:hover { border-color: var(--accent); }
 
-  /* buttons */
-  .btn { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 20px; border-radius: 8px; border: 2px solid currentColor; background: transparent; font: inherit; font-weight: 600; font-size: 16px; text-decoration: none; cursor: pointer; transition: transform .15s ease, background-color .15s ease; }
-  .btn:hover { transform: translateY(-2px); }
-  .btn.primary { background: var(--signal); border-color: var(--signal); color: var(--navy); }
-  .btn.primary:hover { background: #FFD666; }
-  :focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; }
-  .on-sky :focus-visible, .on-white :focus-visible { outline-color: var(--navy); }
-
-  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
-  .chip { border-radius: 999px; padding: 6px 14px; font-size: 14px; font-weight: 500; background: var(--sky); color: var(--navy); }
-  .on-navy .chip { background: transparent; color: var(--white); border: 1.5px solid var(--on-navy-muted); }
-  .on-navy .chip.learning { border: 1.5px dashed var(--signal); color: var(--signal); }
-  .badge { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; padding: 6px 12px; border-radius: 6px; background: var(--sky); color: var(--navy); }
-  .badge.signal { background: var(--signal); }
-  .badge.progress { background: repeating-linear-gradient(135deg, var(--sky) 0 8px, var(--sky-2) 8px 16px); }
-
-  /* section labels for giving feedback */
-  .tag { position: absolute; top: 14px; left: 14px; z-index: 5; background: #B5173A; color: #fff; font: 600 12px/1 system-ui, sans-serif; padding: 7px 10px; border-radius: 4px; }
-  .nav .tag { top: auto; bottom: -11px; }
+  /* feedback labels */
+  .tag { position: absolute; top: 16px; left: 16px; background: #A4262C; color: #fff; font: 600 12px/1 system-ui, sans-serif; padding: 7px 10px; border-radius: 4px; z-index: 3; }
   body.hide-tags .tag { display: none; }
-  .tag-toggle { position: fixed; right: 16px; bottom: 16px; z-index: 20; min-height: 44px; padding: 0 14px; border-radius: 8px; border: 0; background: #B5173A; color: #fff; font: 600 14px system-ui, sans-serif; cursor: pointer; box-shadow: 0 6px 18px rgba(11,37,69,.25); }
+  .tag-toggle { position: fixed; right: 16px; bottom: 16px; z-index: 30; min-height: 44px; padding: 0 16px; border: 0; border-radius: 999px; background: #A4262C; color: #fff; font: 600 14px system-ui, sans-serif; cursor: pointer; }
 
   /* A nav */
-  .nav { position: sticky; top: 0; z-index: 10; background: rgba(11,37,69,.96); color: var(--white); backdrop-filter: blur(6px); }
-  .nav .wrap { display: flex; align-items: center; gap: 24px; min-height: 68px; flex-wrap: wrap; }
-  .mark { display: flex; align-items: center; gap: 10px; font-weight: 800; font-stretch: 112%; text-decoration: none; }
-  .mono { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 8px; background: var(--signal); color: var(--navy); font-weight: 900; font-size: 15px; }
-  .nav ul { display: flex; gap: 22px; margin: 0 0 0 auto; padding: 0; list-style: none; flex-wrap: wrap; }
-  .nav ul a { text-decoration: none; color: var(--on-navy-muted); font-weight: 500; }
-  .nav ul a:hover { color: var(--white); }
-  .nav .btn { min-height: 40px; }
+  .nav { position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,.92); backdrop-filter: saturate(1.4) blur(10px); border-bottom: 1px solid var(--line); }
+  .nav .wrap { display: flex; align-items: center; gap: 28px; min-height: 64px; }
+  .nav .name { font-weight: 650; color: var(--text); text-decoration: none; letter-spacing: -0.01em; }
+  .nav ul { display: flex; gap: 26px; list-style: none; margin: 0 0 0 auto; padding: 0; font-size: 15px; }
+  .nav ul a { color: var(--muted); text-decoration: none; }
+  .nav ul a:hover { color: var(--text); }
+  .nav .btn { min-height: 40px; padding: 0 18px; font-size: 15px; }
 
-  /* B hero with blueprint grid */
-  .hero { overflow: hidden; padding: 96px 0 104px; }
-  .hero::before { content: ""; position: absolute; inset: 0; background-image:
-      linear-gradient(rgba(220,232,245,.08) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(220,232,245,.08) 1px, transparent 1px),
-      linear-gradient(rgba(220,232,245,.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(220,232,245,.04) 1px, transparent 1px);
-    background-size: 96px 96px, 96px 96px, 24px 24px, 24px 24px; pointer-events: none; }
-  .hero .wrap { position: relative; display: grid; grid-template-columns: 1.45fr 1fr; gap: 48px; align-items: center; }
-  .status { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; font-size: 15px; padding: 6px 14px 6px 10px; border-radius: 999px; border: 1.5px solid rgba(255,201,60,.5); color: var(--signal); }
-  .status i { width: 10px; height: 10px; border-radius: 50%; background: var(--signal); }
-  .hero h1 { font-size: clamp(3.2rem, 10vw, 7.5rem); font-weight: 900; font-stretch: 125%; line-height: .9; text-transform: uppercase; margin: 22px 0 18px; }
-  .hero h1 span { display: block; }
-  .hero h1 span:last-child { color: var(--sky); -webkit-text-stroke: 0; }
-  .hero .lede { font-size: 1.2rem; max-width: 52ch; color: var(--sky); }
-  .hero .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
-  .glance { background: var(--white); color: var(--navy); border-radius: 14px; padding: 26px; box-shadow: 10px 10px 0 var(--signal); }
-  .glance h2 { font-size: 1rem; font-stretch: 100%; letter-spacing: 0; margin: 0 0 14px; color: var(--muted); font-weight: 600; }
-  .glance dl { margin: 0; display: grid; gap: 14px; }
-  .glance div { display: grid; grid-template-columns: 112px 1fr; gap: 12px; padding-bottom: 14px; border-bottom: 1px solid var(--sky); }
-  .glance div:last-child { border-bottom: 0; padding-bottom: 0; }
-  .glance dt { font-size: 14px; color: var(--muted); }
-  .glance dd { margin: 0; font-weight: 700; line-height: 1.35; }
+  /* B hero */
+  .hero { padding: 120px 0 0; }
+  .hero .eyebrow { font-size: 16px; font-weight: 600; color: var(--accent); }
+  .hero h1 { font-size: clamp(3rem, 8.6vw, 7.4rem); max-width: 13ch; margin-top: 18px; font-weight: 650; letter-spacing: -0.045em; line-height: .98; }
+  .hero .lead { margin-top: 28px; }
+  .hero .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+  .proof { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 96px; border-top: 1px solid var(--line); }
+  .proof div { padding: 32px 24px 40px 0; }
+  .proof div + div { padding-left: 24px; border-left: 1px solid var(--line); }
+  .proof b { display: block; font-size: clamp(2.6rem, 5vw, 4rem); font-weight: 650; letter-spacing: -0.04em; line-height: 1; }
+  .proof b.win { color: var(--win); }
+  .proof span { display: block; margin-top: 12px; font-size: 15px; color: var(--muted); max-width: 22ch; }
 
-  /* C featured project */
-  .featured { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: center; }
-  .window { border-radius: 12px; overflow: hidden; background: var(--navy); box-shadow: 0 24px 48px -24px rgba(11,37,69,.45); }
-  .window .bar { display: flex; gap: 6px; padding: 12px 14px; background: var(--navy-2); }
-  .window .bar i { width: 10px; height: 10px; border-radius: 50%; background: var(--on-navy-muted); opacity: .6; }
-  .window .screen { aspect-ratio: 16 / 10; display: grid; place-items: center; text-align: center; padding: 24px; color: var(--on-navy-muted); font-size: 15px;
-    background-image: linear-gradient(rgba(220,232,245,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(220,232,245,.07) 1px, transparent 1px); background-size: 24px 24px; }
-  .featured h3 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; margin-top: 14px; }
-  .apps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 40px; }
-  .app { background: var(--sky); border-radius: 12px; padding: 22px; transition: transform .15s ease; }
-  .app:hover { transform: translateY(-3px); }
-  .app p { font-size: 15.5px; color: var(--muted); }
+  /* C CFD showcase */
+  .showcase { display: grid; grid-template-columns: 1fr 1.15fr; gap: 72px; align-items: center; }
+  .big-stat { font-size: clamp(5rem, 14vw, 11rem); font-weight: 650; letter-spacing: -0.06em; line-height: .9; color: var(--accent); margin: 32px 0 8px; }
+  .chart { background: var(--bg); border-radius: 24px; padding: 40px 36px 32px; border: 1px solid var(--line); }
+  .chart figcaption { font-size: 15px; color: var(--muted); margin-top: 20px; }
+  .bars { display: grid; gap: 28px; }
+  .bar-row { display: grid; gap: 10px; }
+  .bar-row .label { display: flex; justify-content: space-between; gap: 12px; font-size: 15px; font-weight: 600; }
+  .bar-row .label span:last-child { font-variant-numeric: tabular-nums; color: var(--muted); font-weight: 500; }
+  .track { height: 56px; background: var(--surface); border-radius: 12px; overflow: hidden; }
+  .fill { height: 100%; border-radius: 12px; background: #B9C3CF; transform-origin: left; }
+  .fill.best { background: var(--accent); }
+  .delta { display: flex; align-items: center; gap: 10px; margin-top: 22px; font-weight: 600; color: var(--accent); font-size: 15px; }
+  .delta i { flex: 0 0 auto; width: 28px; height: 2px; background: var(--accent); }
+  .meta { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 28px; }
+  .pill { font-size: 14px; padding: 6px 14px; border-radius: 999px; background: var(--surface); color: var(--text); }
+  .alt .pill { background: var(--bg); }
 
-  /* D more projects */
-  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-  .card { border-radius: 14px; padding: 30px; background: var(--white); }
-  .card.dark { background: var(--navy); color: var(--white); }
-  .card.dark .muted { color: var(--on-navy-muted); }
-  .stat { font-size: clamp(4rem, 9vw, 6rem); font-weight: 900; font-stretch: 125%; line-height: .9; color: var(--signal); margin: 22px 0 6px; }
-  .card.dark .chip { background: transparent; color: var(--white); border: 1.5px solid var(--on-navy-muted); }
+  /* D FBLA apps */
+  .section-head { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: end; margin-bottom: 64px; }
+  .apps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .app { background: var(--bg); border: 1px solid var(--line); border-radius: 24px; padding: 36px; display: flex; flex-direction: column; min-height: 280px; }
+  .app .kind { font-size: 14px; font-weight: 600; color: var(--muted); }
+  .app h3 { font-size: clamp(1.6rem, 2.6vw, 2.1rem); letter-spacing: -0.03em; margin-top: 10px; }
+  .app p { color: var(--muted); }
+  .app .meta { margin-top: auto; padding-top: 28px; }
+  .stackline { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; color: var(--muted); font-size: 15px; }
 
-  /* E recognition */
-  .awards { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
-  .awards li { display: grid; grid-template-columns: 68px 1fr; gap: 16px; align-items: center; padding: 10px; border-radius: 10px; background: var(--sky); }
-  .place { font-weight: 900; font-stretch: 125%; font-size: 1.3rem; text-align: center; border-radius: 8px; padding: 10px 0; background: var(--white); }
-  .place.gold { background: var(--signal); }
-  .honors { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
-  .honors li { padding: 12px 0; border-bottom: 1px solid var(--sky); }
-  .honors b { display: block; }
-  .sub { font-size: 1.05rem; font-weight: 700; margin-bottom: 14px; }
+  /* E CAD */
+  .cad { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .model { border-radius: 24px; overflow: hidden; background: var(--surface); border: 1px solid var(--line); }
+  .stage { position: relative; aspect-ratio: 4 / 3; display: grid; place-items: center; background: var(--bg); }
+  .stage svg { width: 46%; height: auto; color: #8A96A6; }
+  .stage iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .stage .btn { position: absolute; left: 50%; bottom: 24px; transform: translateX(-50%); }
+  .model .info { padding: 24px 28px 28px; border-top: 1px solid var(--line); }
+  .model .info p { font-size: 16px; }
 
-  /* F skills */
-  .three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
-  .level { border-top: 1.5px solid var(--on-navy-muted); padding-top: 16px; }
-  .level .bar { height: 6px; border-radius: 3px; background: var(--navy-2); margin-top: 10px; overflow: hidden; }
-  .level .bar span { display: block; height: 100%; background: var(--sky); }
-  .level.learn .bar span { background: var(--signal); }
+  /* F currently building */
+  .building { position: relative; padding: 56px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .building .wrap { display: grid; grid-template-columns: auto 1fr auto; gap: 32px; align-items: center; }
+  .building .state { display: inline-flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; color: var(--muted); }
+  .building .state i { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--accent); }
+  .building p { margin: 0; font-size: 1.15rem; }
+  .building b { font-weight: 650; }
 
-  /* G about + education */
-  .about { display: grid; grid-template-columns: 1.3fr 1fr; gap: 56px; }
-  .about p { max-width: 62ch; }
-  .timeline { list-style: none; margin: 0; padding: 0 0 0 26px; border-left: 3px solid var(--sky); display: grid; gap: 26px; }
-  .timeline li { position: relative; }
-  .timeline li::before { content: ""; position: absolute; left: -36px; top: 4px; width: 17px; height: 17px; border-radius: 50%; background: var(--white); border: 3px solid var(--navy); }
-  .timeline li.now::before { background: var(--signal); }
-  .timeline .yr { font-weight: 800; font-size: 14px; color: var(--muted); }
+  /* G recognition */
+  .rec { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; }
+  .rec h3 { font-size: 1.05rem; color: var(--muted); font-weight: 600; letter-spacing: 0; padding-bottom: 16px; border-bottom: 1px solid var(--text); }
+  .list { list-style: none; margin: 0; padding: 0; }
+  .list li { display: grid; grid-template-columns: 64px 1fr; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+  .list .place { font-weight: 650; font-variant-numeric: tabular-nums; }
+  .list .place.win { color: var(--win); }
+  .list.honors li { grid-template-columns: 1fr; gap: 2px; }
+  .list small { font-size: 15px; color: var(--muted); }
 
-  /* H cad */
-  .viewer { position: relative; aspect-ratio: 4 / 3; border-radius: 12px; overflow: hidden; display: grid; place-items: center; text-align: center; padding: 20px; color: var(--muted); background-color: var(--white);
-    background-image: linear-gradient(var(--sky) 1px, transparent 1px), linear-gradient(90deg, var(--sky) 1px, transparent 1px); background-size: 24px 24px; }
-  .viewer .btn { position: absolute; right: 12px; bottom: 12px; background: var(--navy); color: var(--white); border-color: var(--navy); min-height: 44px; }
-  .cad h3 { margin-top: 14px; }
+  /* H skills + education */
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; }
+  .skills { display: grid; gap: 28px; margin-top: 40px; }
+  .skills .lvl { font-size: 15px; font-weight: 600; color: var(--muted); }
+  .skills .meta { margin-top: 10px; }
+  .edu { list-style: none; margin: 40px 0 0; padding: 0; }
+  .edu li { padding: 22px 0; border-top: 1px solid var(--line); }
+  .edu li:last-child { border-bottom: 1px solid var(--line); }
+  .edu .yr { font-size: 15px; color: var(--muted); }
+  .edu h3 { margin-top: 4px; }
 
   /* I contact */
-  .contact { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; align-items: center; }
-  .email { display: block; font-size: clamp(1.6rem, 4.6vw, 3rem); font-weight: 900; font-stretch: 112%; line-height: 1.05; word-break: break-word; text-decoration: none; margin-top: 18px; }
-  .email:hover { color: var(--signal); }
-  .linkrows { display: grid; gap: 10px; }
-  .linkrow { display: flex; justify-content: space-between; align-items: center; min-height: 58px; padding: 0 20px; border-radius: 10px; border: 1.5px solid var(--navy-2); background: var(--navy-2); text-decoration: none; font-weight: 600; transition: border-color .15s ease; }
-  .linkrow:hover { border-color: var(--signal); }
-  .linkrow span { color: var(--signal); }
+  .contact .email { display: inline-block; margin-top: 36px; font-size: clamp(1.7rem, 5vw, 3.6rem); font-weight: 650; letter-spacing: -0.035em; text-decoration: none; word-break: break-word; line-height: 1.1; }
+  .contact .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+  .profiles { display: flex; flex-wrap: wrap; gap: 28px; margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--line); font-weight: 600; }
+  .profiles a { text-decoration: none; }
 
-  footer { background: #071A31; color: var(--on-navy-muted); font-size: 14px; }
-  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding-top: 22px; padding-bottom: 22px; }
+  footer { padding: 32px 0 40px; font-size: 14px; color: var(--muted); position: relative; border-top: 1px solid var(--line); }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
 
-  /* one page-load moment: the name */
+  /* motion: content is visible by default; supporting browsers fade it in as it scrolls into view */
   @media (prefers-reduced-motion: no-preference) {
-    .hero h1 span { animation: rise .7s cubic-bezier(.2,.7,.2,1) both; }
-    .hero h1 span:last-child { animation-delay: .12s; }
-    @keyframes rise { from { opacity: 0; transform: translateY(24px); } }
+    @supports (animation-timeline: view()) {
+      .reveal { animation: reveal linear both; animation-timeline: view(); animation-range: entry 0% entry 40%; }
+      @keyframes reveal { from { opacity: 0; transform: translateY(28px); } }
+      .fill { animation: grow linear both; animation-timeline: view(); animation-range: entry 10% cover 40%; }
+      @keyframes grow { from { transform: scaleX(0.05); } }
+    }
   }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
-  @media (max-width: 820px) {
-    .pad { padding: 64px 0; }
-    .hero { padding: 64px 0 72px; }
-    .hero .wrap, .featured, .two, .three, .about, .contact { grid-template-columns: 1fr; }
-    .apps { grid-template-columns: 1fr; }
+  @media (max-width: 900px) {
+    section { padding: 96px 0; }
+    .hero { padding-top: 72px; }
     .nav ul { display: none; }
     .nav .btn { margin-left: auto; }
-    .glance { box-shadow: 6px 6px 0 var(--signal); }
-    .glance div { grid-template-columns: 1fr; gap: 2px; }
+    .proof { grid-template-columns: 1fr 1fr; margin-top: 64px; }
+    .proof div, .proof div + div { padding: 24px 16px 28px 0; border-left: 0; }
+    .proof div:nth-child(even) { padding-left: 16px; border-left: 1px solid var(--line); }
+    .proof div:nth-child(n+3) { border-top: 1px solid var(--line); }
+    .showcase, .section-head, .rec, .two { grid-template-columns: 1fr; gap: 40px; }
+    .apps, .cad { grid-template-columns: 1fr; }
+    .app { padding: 28px; min-height: 0; }
+    .chart { padding: 28px 20px 24px; }
+    .building .wrap { grid-template-columns: 1fr; gap: 12px; }
   }
 </style>
 </head>
 <body>
 
-<button class="tag-toggle" type="button" aria-pressed="false" onclick="document.body.classList.toggle('hide-tags'); this.setAttribute('aria-pressed', document.body.classList.contains('hide-tags')); this.textContent = document.body.classList.contains('hide-tags') ? 'Show labels' : 'Hide labels';">Hide labels</button>
+<button class="tag-toggle" type="button" onclick="document.body.classList.toggle('hide-tags'); this.textContent = document.body.classList.contains('hide-tags') ? 'Show labels' : 'Hide labels';">Hide labels</button>
 
 <!-- A -->
 <header class="nav">
-  <span class="tag">A · Top bar</span>
+  <span class="tag" style="top:auto;bottom:-14px">A · Top bar</span>
   <div class="wrap">
-    <a class="mark" href="#top"><span class="mono" aria-hidden="true">DK</span>Daksh Kalra</a>
+    <a class="name" href="#top">Daksh Kalra</a>
     <ul>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#recognition">Awards</a></li>
-      <li><a href="#skills">Skills</a></li>
+      <li><a href="#cfd">Work</a></li>
+      <li><a href="#recognition">Recognition</a></li>
       <li><a href="#about">About</a></li>
     </ul>
     <a class="btn primary" href="#contact">Email me</a>
   </div>
 </header>
 
+<main id="top">
+
 <!-- B -->
-<section class="hero on-navy" id="top">
-  <span class="tag">B · Hero</span>
+<section class="hero">
+  <span class="tag">B · Hero: proof first</span>
   <div class="wrap">
-    <div>
-      <span class="status"><i aria-hidden="true"></i>Open to software engineering internships</span>
-      <h1><span>Daksh</span><span>Kalra</span></h1>
-      <p class="lede">Computer science student at ASU Barrett, class of 2030. I build for the web end to end: a React interface up front, Firebase behind it, and JavaScript or Python holding the pieces together.</p>
-      <div class="actions">
-        <a class="btn primary" href="#contact">Email me</a>
-        <a class="btn" href="https://github.com/dakshOnGitHub">GitHub</a>
-        <a class="btn" href="https://leetcode.com/u/DakshOnLeetCode/">LeetCode</a>
-        <a class="btn" href="https://www.linkedin.com/in/daksh-kalra-294712444/">LinkedIn</a>
-      </div>
+    <p class="eyebrow">Computer Science at ASU Barrett, class of 2030</p>
+    <h1>I build things and measure whether they work.</h1>
+    <p class="lead">Full-stack web apps in React and Firebase, an aerodynamics study in CFD, and a neural network written from scratch. Looking for a software engineering internship.</p>
+    <div class="actions">
+      <a class="btn primary" href="#contact">Email me</a>
+      <a class="btn quiet" href="https://github.com/dakshOnGitHub">GitHub</a>
+      <a class="btn quiet" href="https://www.linkedin.com/in/daksh-kalra-294712444/">LinkedIn</a>
+      <a class="btn quiet" href="https://leetcode.com/u/DakshOnLeetCode/">LeetCode</a>
     </div>
-    <aside class="glance">
-      <h2>At a glance</h2>
-      <dl>
-        <div><dt>Studying</dt><dd>B.S. Computer Science, ASU Barrett</dd></div>
-        <div><dt>Top result</dt><dd>1st at State, FBLA Coding &amp; Programming</dd></div>
-        <div><dt>High school</dt><dd>Valedictorian, Sandra Day O'Connor HS</dd></div>
-        <div><dt>Certified</dt><dd>Java (Certiport)</dd></div>
-        <div><dt>Learning</dt><dd>Next.js</dd></div>
-      </dl>
-    </aside>
+    <div class="proof">
+      <div><b class="win">1st</b><span>in State, FBLA Coding &amp; Programming</span></div>
+      <div><b>~11%</b><span>less drag in my CFD vortex-generator study</span></div>
+      <div><b>4</b><span>full-stack apps, every one placed at State or Nationals</span></div>
+      <div><b>3×</b><span>FBLA National Qualifier</span></div>
+    </div>
   </div>
 </section>
 
 <!-- C -->
-<section class="pad on-white" id="projects">
-  <span class="tag">C · Featured project</span>
-  <div class="wrap">
-    <div class="head"><h2>Projects</h2><p class="muted">Things I've built, from competition apps to research.</p></div>
-    <div class="featured">
-      <div class="window" role="img" aria-label="Placeholder for an app screenshot">
-        <div class="bar"><i></i><i></i><i></i></div>
-        <div class="screen">Screenshot or short screen recording<br/>of one FBLA app goes here</div>
-      </div>
-      <div>
-        <span class="badge signal">Every app placed at State or Nationals</span>
-        <h3>FBLA competition apps</h3>
-        <p class="muted">Four full-stack web apps I built solo for FBLA programming events.</p>
-        <div class="chips"><span class="chip">React</span><span class="chip">JavaScript</span><span class="chip">Firebase</span><span class="chip">Material UI</span><span class="chip">Git</span></div>
-      </div>
+<section class="alt" id="cfd">
+  <span class="tag">C · Showcase: CFD study</span>
+  <div class="wrap showcase">
+    <div class="reveal">
+      <h2>Cutting drag with vortex generators.</h2>
+      <div class="big-stat">−11%</div>
+      <p class="lead">An independent CFD study on the DrivAer fastback car model. I tested several vortex-generator placements against a baseline to find where they actually reduce drag.</p>
+      <div class="meta"><span class="pill">SimScale</span><span class="pill">CFD simulation</span><span class="pill">Independent research</span></div>
     </div>
-    <div class="apps">
-      <article class="app"><h3>Financial Tracker</h3><p>Budgeting app with an AI chatbot for spending insights and OCR receipt scanning that logs transactions automatically.</p></article>
-      <article class="app"><h3>Lost &amp; Found</h3><p>Matches a lost-item report to the closest found item, with in-app chat so people can arrange the handoff.</p></article>
-      <article class="app"><h3>Local Business Finder</h3><p>Job board and business directory with coupon filters, an event-vendor application flow, and sentiment scoring on reviews.</p></article>
-      <article class="app"><h3>GPA Calculator</h3><p>Tracks GPA over time and recommends resources to help students raise their grades.</p></article>
-    </div>
+    <figure class="chart reveal" style="margin:0">
+      <div class="bars">
+        <div class="bar-row">
+          <div class="label"><span>Baseline (no vortex generators)</span><span>100</span></div>
+          <div class="track"><div class="fill" style="width:100%"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="label"><span>Best vortex-generator placement</span><span>~89</span></div>
+          <div class="track"><div class="fill best" style="width:89%"></div></div>
+        </div>
+      </div>
+      <div class="delta"><i aria-hidden="true"></i>About 11% lower average drag coefficient</div>
+      <figcaption>Average drag coefficient, shown relative to the baseline (baseline = 100).</figcaption>
+    </figure>
   </div>
 </section>
 
 <!-- D -->
-<section class="pad on-sky">
-  <span class="tag">D · Other projects</span>
-  <div class="wrap two">
-    <article class="card dark">
-      <span class="badge signal">Complete</span>
-      <h3 style="margin-top:14px;font-size:1.5rem">Drag reduction with vortex generators</h3>
-      <div class="stat">~11%</div>
-      <p class="muted">lower average drag coefficient than the baseline</p>
-      <p>An independent CFD study on the DrivAer fastback car model, testing where vortex generators actually reduce drag.</p>
-      <div class="chips"><span class="chip">SimScale</span><span class="chip">CFD</span></div>
-    </article>
-    <article class="card">
-      <span class="badge progress">In progress</span>
-      <h3 style="margin-top:14px;font-size:1.5rem">Neural network from scratch</h3>
-      <p>Forward pass, backpropagation, and gradient descent built by hand in plain Python, with no ML libraries.</p>
-      <p class="muted">The point is to understand what a framework does under the hood before relying on one.</p>
-      <div class="chips"><span class="chip">Python</span></div>
-    </article>
+<section id="apps">
+  <span class="tag">D · FBLA apps: award-first cards</span>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Four apps. Every one placed.</h2>
+      <p class="lead">Full-stack web apps I built solo for FBLA programming events. Each placed at the State or National level.</p>
+    </div>
+    <div class="apps">
+      <article class="app reveal"><span class="kind">Personal finance</span><h3>Financial Tracker</h3><p>Budgeting app with an AI chatbot for spending insights and OCR receipt scanning that logs transactions automatically.</p><div class="meta"><span class="pill">AI chatbot</span><span class="pill">OCR</span></div></article>
+      <article class="app reveal"><span class="kind">Community</span><h3>Lost &amp; Found</h3><p>Matches a lost-item report to the closest found item, with in-app chat so people can arrange the handoff.</p><div class="meta"><span class="pill">Matching algorithm</span><span class="pill">In-app chat</span></div></article>
+      <article class="app reveal"><span class="kind">Local business</span><h3>Local Business Finder</h3><p>Job board and business directory with coupon filters, an event-vendor application flow, and sentiment scoring on reviews.</p><div class="meta"><span class="pill">Sentiment analysis</span><span class="pill">Filters</span></div></article>
+      <article class="app reveal"><span class="kind">Education</span><h3>GPA Calculator</h3><p>Tracks GPA over time and recommends resources to help students raise their grades.</p><div class="meta"><span class="pill">Charts</span><span class="pill">Recommendations</span></div></article>
+    </div>
+    <div class="stackline">Built with <span class="pill">React</span><span class="pill">JavaScript</span><span class="pill">Firebase</span><span class="pill">Material UI</span><span class="pill">Git</span></div>
   </div>
 </section>
 
 <!-- E -->
-<section class="pad on-white" id="recognition">
-  <span class="tag">E · Awards &amp; honors</span>
+<section class="alt" id="cad">
+  <span class="tag">E · CAD: real 3D models, click to load</span>
   <div class="wrap">
-    <div class="head"><h2>Recognition</h2><p class="muted">FBLA state placements, 3x National Qualifier.</p></div>
-    <div class="two">
-      <div>
-        <p class="sub">FBLA State</p>
-        <ul class="awards">
-          <li><span class="place gold">1st</span><span>Coding &amp; Programming</span></li>
-          <li><span class="place gold">1st</span><span>Virtual Business Challenge <span class="muted">(13th nationally)</span></span></li>
-          <li><span class="place">2nd</span><span>Intro to Coding &amp; Programming</span></li>
-          <li><span class="place">4th</span><span>Website Coding &amp; Development</span></li>
-          <li><span class="place">5th</span><span>Coding &amp; Programming</span></li>
-        </ul>
-      </div>
-      <div>
-        <p class="sub">Honors &amp; leadership</p>
-        <ul class="honors">
-          <li><b>Valedictorian</b><span class="muted">Sandra Day O'Connor High School, 2026</span></li>
-          <li><b>AP Scholar with Distinction</b><span class="muted">College Board</span></li>
-          <li><b>AP Cybersecurity</b><span class="muted">Selected for a limited national pilot program</span></li>
-          <li><b>Founder &amp; President, Coding Club</b><span class="muted">Grew it to 20+ members, ran weekly workshops and its first hackathon</span></li>
-          <li><b>Treasurer, FBLA</b><span class="muted">Raised $1,100+ for a 60-member chapter, Gold Champion Chapter</span></li>
-          <li><b>Founder &amp; VP, Math Honor Society</b><span class="muted">Peer tutoring for 25+ members on AP and SAT prep</span></li>
-        </ul>
-      </div>
+    <div class="section-head reveal">
+      <h2>Designed in 3D.</h2>
+      <p class="lead">Parts I modeled in Fusion 360. Open either one to spin it around.</p>
+    </div>
+    <div class="cad">
+      <article class="model reveal">
+        <div class="stage" data-embed="https://gmail7339905.autodesk360.com/shares/public/SH90d2dQT28d5b60281149b3ca951ccb6483?mode=embed" data-title="Computer stand">
+          <svg viewBox="0 0 200 140" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M30 40 L100 15 L170 40 L100 65 Z"/><path d="M30 40 V58 L100 83 V65"/><path d="M170 40 V58 L100 83"/><path d="M55 70 V115 M145 70 V115 M100 92 V130"/><path d="M45 115 H65 M135 115 H155 M90 130 H110"/></svg>
+          <button class="btn primary" type="button">View in 3D</button>
+        </div>
+        <div class="info"><h3>Computer stand</h3><p class="muted">Raises a computer to a more comfortable viewing height.</p></div>
+      </article>
+      <article class="model reveal">
+        <div class="stage" data-embed="https://gmail7339905.autodesk360.com/shares/public/SH90d2dQT28d5b602811b8ca82c31864895c?mode=embed" data-title="Rubik's cube stand">
+          <svg viewBox="0 0 200 160" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M100 20 L145 42 L100 64 L55 42 Z"/><path d="M55 42 V90 L100 112 V64"/><path d="M145 42 V90 L100 112"/><path d="M70 49.5 L115 27.5 M85 57 L130 35 M77.5 35 L122.5 57 M62.5 42 L107 20"/><path d="M40 118 L100 140 L160 118 L100 96 Z"/><path d="M40 118 V126 L100 148 L160 126 V118"/></svg>
+          <button class="btn primary" type="button">View in 3D</button>
+        </div>
+        <div class="info"><h3>Rubik's cube stand</h3><p class="muted">A display stand that holds a Rubik's cube.</p></div>
+      </article>
     </div>
   </div>
 </section>
 
 <!-- F -->
-<section class="pad on-navy" id="skills">
-  <span class="tag">F · Skills</span>
+<div class="building">
+  <span class="tag" style="top:-14px">F · Currently building</span>
   <div class="wrap">
-    <div class="head"><h2>Skills</h2><p class="muted">Grouped by how well I know them.</p></div>
-    <div class="three">
-      <div class="level"><h3>Proficient</h3><div class="bar" aria-hidden="true"><span style="width:100%"></span></div><div class="chips"><span class="chip">Java (certified)</span><span class="chip">Python</span><span class="chip">JavaScript</span><span class="chip">React</span></div></div>
-      <div class="level"><h3>Familiar</h3><div class="bar" aria-hidden="true"><span style="width:60%"></span></div><div class="chips"><span class="chip">HTML/CSS</span><span class="chip">Git</span><span class="chip">Firebase</span></div></div>
-      <div class="level learn"><h3>Learning</h3><div class="bar" aria-hidden="true"><span style="width:25%"></span></div><div class="chips"><span class="chip learning">Next.js</span></div></div>
-    </div>
+    <span class="state"><i aria-hidden="true"></i>Currently building</span>
+    <p><b>A neural network from scratch in Python.</b> <span class="muted">Forward pass, backpropagation, and gradient descent by hand, with no ML libraries.</span></p>
+    <span class="pill">Python</span>
   </div>
-</section>
+</div>
 
 <!-- G -->
-<section class="pad on-white" id="about">
-  <span class="tag">G · About + education</span>
-  <div class="wrap about">
-    <div>
-      <div class="head"><h2>About me</h2></div>
-      <p>I'm Daksh, a computer science student at Arizona State University in Barrett, The Honors College, class of 2030.</p>
-      <p>I got serious about code in high school. I founded our coding club and our Math Honor Society chapter, and competed in FBLA's programming events, where I placed first at state in Coding &amp; Programming.</p>
-      <p>I'm looking for an internship where I can ship real features, get my code reviewed by people who care, and get faster at turning an idea into something people actually use.</p>
+<section id="recognition">
+  <span class="tag">G · Recognition: dense list</span>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Recognition.</h2>
+      <p class="lead">Competition results and honors from high school.</p>
     </div>
-    <div>
-      <div class="head"><h2>Education</h2></div>
-      <ol class="timeline">
-        <li class="now"><span class="yr">2026 to now</span><h3>B.S. Computer Science, expected 2030</h3><p class="muted">Arizona State University, Barrett, The Honors College</p></li>
-        <li><span class="yr">2026</span><h3>Graduated valedictorian</h3><p class="muted">Sandra Day O'Connor High School</p></li>
-      </ol>
+    <div class="rec">
+      <div class="reveal">
+        <h3>FBLA State placements · 3× National Qualifier</h3>
+        <ul class="list">
+          <li><span class="place win">1st</span><span>Coding &amp; Programming</span></li>
+          <li><span class="place win">1st</span><span>Virtual Business Challenge <small>(13th nationally)</small></span></li>
+          <li><span class="place">2nd</span><span>Intro to Coding &amp; Programming</span></li>
+          <li><span class="place">4th</span><span>Website Coding &amp; Development</span></li>
+          <li><span class="place">5th</span><span>Coding &amp; Programming</span></li>
+        </ul>
+      </div>
+      <div class="reveal">
+        <h3>Honors &amp; leadership</h3>
+        <ul class="list honors">
+          <li><span>Valedictorian</span><small>Sandra Day O'Connor High School, 2026</small></li>
+          <li><span>AP Scholar with Distinction</span><small>College Board</small></li>
+          <li><span>AP Cybersecurity pilot program</span><small>Selected for a limited national pilot</small></li>
+          <li><span>Founder &amp; President, Coding Club</span><small>Grew it to 20+ members; ran weekly workshops and its first hackathon</small></li>
+          <li><span>Treasurer, FBLA</span><small>Raised $1,100+ for a 60-member chapter; Gold Champion Chapter</small></li>
+          <li><span>Founder &amp; VP, Math Honor Society</span><small>Peer tutoring for 25+ members on AP and SAT prep</small></li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- H -->
-<section class="pad on-sky cad">
-  <span class="tag">H · CAD</span>
-  <div class="wrap">
-    <div class="head"><h2>Things I've designed</h2><p class="muted">3D models made in Fusion 360.</p></div>
-    <div class="two">
-      <div>
-        <div class="viewer">Picture of the model<br/>(screenshot from Fusion 360)<a class="btn" href="#">View in 3D</a></div>
-        <h3>Computer stand</h3><p class="muted">A stand that raises a computer to a more comfortable viewing height.</p>
+<section class="alt" id="about">
+  <span class="tag">H · Skills + education</span>
+  <div class="wrap two">
+    <div class="reveal">
+      <h2>Skills.</h2>
+      <div class="skills">
+        <div><span class="lvl">Proficient</span><div class="meta"><span class="pill">Java (certified)</span><span class="pill">Python</span><span class="pill">JavaScript</span><span class="pill">React</span></div></div>
+        <div><span class="lvl">Familiar</span><div class="meta"><span class="pill">HTML/CSS</span><span class="pill">Git</span><span class="pill">Firebase</span></div></div>
+        <div><span class="lvl">Learning</span><div class="meta"><span class="pill">Next.js</span></div></div>
       </div>
-      <div>
-        <div class="viewer">Picture of the model<br/>(screenshot from Fusion 360)<a class="btn" href="#">View in 3D</a></div>
-        <h3>Rubik's cube stand</h3><p class="muted">A display stand that holds a Rubik's cube.</p>
-      </div>
+    </div>
+    <div class="reveal">
+      <h2>Education.</h2>
+      <ul class="edu">
+        <li><span class="yr">2026 to 2030</span><h3>B.S. Computer Science</h3><p class="muted">Arizona State University, Barrett, The Honors College</p></li>
+        <li><span class="yr">2026</span><h3>Valedictorian</h3><p class="muted">Sandra Day O'Connor High School</p></li>
+      </ul>
     </div>
   </div>
 </section>
 
 <!-- I -->
-<section class="pad on-navy" id="contact">
+<section id="contact" class="contact">
   <span class="tag">I · Contact</span>
-  <div class="wrap contact">
-    <div>
-      <div class="head" style="margin-bottom:0"><h2>Get in touch</h2></div>
-      <p class="muted">Hiring for an internship, building something, or want to talk code? Email is the fastest way to reach me.</p>
-      <a class="email" href="mailto:daksh.kalra777@gmail.com">daksh.kalra777@gmail.com</a>
-      <div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap"><a class="btn primary" href="mailto:daksh.kalra777@gmail.com">Email me</a><button class="btn" type="button" onclick="navigator.clipboard && navigator.clipboard.writeText('daksh.kalra777@gmail.com').then(() => this.textContent = 'Copied').catch(() => {})">Copy email</button></div>
+  <div class="wrap reveal">
+    <h2>Let's talk.</h2>
+    <p class="lead">Hiring for an internship, building something, or want to talk code? Email is the fastest way to reach me.</p>
+    <a class="email" href="mailto:daksh.kalra777@gmail.com">daksh.kalra777@gmail.com</a>
+    <div class="actions">
+      <a class="btn primary" href="mailto:daksh.kalra777@gmail.com">Email me</a>
+      <button class="btn quiet" type="button" onclick="var b=this; navigator.clipboard && navigator.clipboard.writeText('daksh.kalra777@gmail.com').then(function(){ b.textContent='Copied'; setTimeout(function(){ b.textContent='Copy email'; }, 2000); });">Copy email</button>
     </div>
-    <div class="linkrows">
-      <a class="linkrow" href="https://github.com/dakshOnGitHub">GitHub <span aria-hidden="true">↗</span></a>
-      <a class="linkrow" href="https://leetcode.com/u/DakshOnLeetCode/">LeetCode <span aria-hidden="true">↗</span></a>
-      <a class="linkrow" href="https://www.linkedin.com/in/daksh-kalra-294712444/">LinkedIn <span aria-hidden="true">↗</span></a>
+    <div class="profiles">
+      <a href="https://github.com/dakshOnGitHub">GitHub</a>
+      <a href="https://www.linkedin.com/in/daksh-kalra-294712444/">LinkedIn</a>
+      <a href="https://leetcode.com/u/DakshOnLeetCode/">LeetCode</a>
     </div>
   </div>
 </section>
 
-<!-- J -->
+</main>
+
 <footer>
-  <span class="tag">J · Footer</span>
-  <div class="wrap"><span>© 2026 Daksh Kalra</span><span>Built with React + Vite</span><a href="#top">Back to top</a></div>
+  <span class="tag" style="top:-14px">J · Footer</span>
+  <div class="wrap"><span>© 2026 Daksh Kalra</span><a href="#top">Back to top</a></div>
 </footer>
 
+<script>
+  // Load the Autodesk viewer only when someone asks for it.
+  document.querySelectorAll('.stage[data-embed]').forEach(function (stage) {
+    stage.querySelector('button').addEventListener('click', function () {
+      var f = document.createElement('iframe');
+      f.src = stage.dataset.embed;
+      f.title = '3D model of ' + stage.dataset.title;
+      f.allow = 'fullscreen';
+      stage.appendChild(f);
+      this.remove();
+    });
+  });
+</script>
 </body>
 </html>

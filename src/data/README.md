@@ -60,7 +60,6 @@ The **CAD** section. Starts as `[]` and stays hidden until it has an entry. File
 
 - `poster` is a still render shown first (in Fusion: capture an image of the design, about 1200px wide, saved as .jpg).
 - `embed` (easiest): in Fusion, Share > Public link, then use `https://<your-hub>.autodesk360.com/shares/public/<SH id>?mode=embed`. Autodesk's viewer loads in place when someone clicks **View in 3D**. Use either `embed` or `model`, not both.
-- `embed` (easiest): in Fusion, Share > Public link, then use `https://<your-hub>.autodesk360.com/shares/public/<SH id>?mode=embed`. Autodesk's viewer loads in place when someone clicks **View in 3D**. Use either `embed` or `model`, not both.
 - `model` is optional. When present, a **View in 3D** button appears; the 3D viewer only downloads when someone clicks it.
 - Getting a `.glb` out of Fusion 360: use File > Export and pick `.glb` if your version lists it; otherwise export `.obj` or `.stl` and convert it in Blender (File > Export > glTF 2.0, format "glTF Binary").
 - Keep each `.glb` under ~3 MB. To shrink one: `npx @gltf-transform/cli optimize in.glb out.glb --compress draco`
