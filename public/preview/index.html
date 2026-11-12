@@ -7,7 +7,7 @@
 <title>Portfolio Preview</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap&subset=latin" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap&subset=latin" rel="stylesheet" />
 <script>
   try { if (localStorage.getItem('theme') === 'light') document.documentElement.dataset.theme = 'light'; } catch (e) {}
   function toggleTheme(btn) {
@@ -31,14 +31,21 @@
     --bar: #B9C3CF;
     --nav-bg: rgba(255,255,255,.92);
     --wrap: 1180px;
+    --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, "JetBrains Mono", Consolas, monospace;
+    --red: #C42B1C;
+    --yellow: #8A5A00;
+    --green: #107C10;
     color-scheme: light;
   }
   /* dark is the default; light is opt-in via the toggle */
   :root:not([data-theme="light"]) {
     --bg: #0F1217;
     --surface: #171B22;
-    --text: #E9EDF2;
-    --muted: #9AA4B2;
+    --text: #FFFFFF;
+    --muted: #C3CAD4;
+    --red: #FF5F57;
+    --yellow: #FEBC2E;
+    --green: #28C840;
     --line: #2A303A;
     --accent: #5AAEF2;
     --accent-hover: #8CC6F6;
@@ -50,16 +57,17 @@
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  body { margin: 0; background: var(--bg); color: var(--text); font: 18px/1.6 "Instrument Sans", "Segoe UI", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.7 var(--mono); -webkit-font-smoothing: antialiased; }
   a { color: var(--accent); }
   a:hover { color: var(--accent-hover); }
   .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 20px; }
-  h1, h2, h3 { margin: 0; letter-spacing: -0.03em; line-height: 1.04; font-weight: 650; }
-  h2 { font-size: clamp(2.4rem, 5.6vw, 4.5rem); max-width: 16ch; }
-  h3 { font-size: 1.35rem; letter-spacing: -0.015em; line-height: 1.2; }
+  h1, h2, h3 { margin: 0; letter-spacing: -0.02em; line-height: 1.12; font-weight: 800; }
+  .t-red { color: var(--red); } .t-yellow { color: var(--yellow); } .t-green { color: var(--green); }
+  h2 { font-size: clamp(1.9rem, 4.2vw, 3.4rem); max-width: 20ch; }
+  h3 { font-size: 1.2rem; letter-spacing: -0.01em; line-height: 1.25; }
   p { margin: 12px 0 0; }
   .muted { color: var(--muted); }
-  .lead { font-size: clamp(1.1rem, 1.8vw, 1.35rem); color: var(--muted); max-width: 58ch; }
+  .lead { font-size: clamp(1rem, 1.5vw, 1.15rem); color: var(--muted); max-width: 58ch; }
   section { padding: 140px 0; position: relative; }
   .alt { background: var(--surface); }
   :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
@@ -78,7 +86,7 @@
   /* A nav */
   .nav { position: sticky; top: 0; z-index: 20; background: var(--nav-bg); backdrop-filter: saturate(1.4) blur(10px); border-bottom: 1px solid var(--line); }
   .nav .wrap { display: flex; align-items: center; gap: 28px; min-height: 64px; }
-  .nav .name { font-weight: 650; color: var(--text); text-decoration: none; letter-spacing: -0.01em; }
+  .nav .name { font-weight: 700; color: var(--text); text-decoration: none; letter-spacing: -0.01em; }
   .nav ul { display: flex; gap: 26px; list-style: none; margin: 0 0 0 auto; padding: 0; font-size: 15px; }
   .nav ul a { color: var(--muted); text-decoration: none; }
   .nav ul a:hover { color: var(--text); }
@@ -92,7 +100,7 @@
 
   /* B hero */
   .hero { padding: 96px 0 0; }
-  .hero h1 { font-size: clamp(2.4rem, 4.6vw, 3.6rem); letter-spacing: -0.035em; line-height: 1.05; }
+  .hero h1 { font-size: clamp(2.2rem, 4.2vw, 3.4rem); letter-spacing: -0.03em; line-height: 1.05; }
   .hero .eyebrow { margin-top: 10px; font-size: clamp(1.05rem, 1.6vw, 1.25rem); font-weight: 600; color: var(--accent); }
   .hero .lead { margin-top: 20px; max-width: 40ch; }
   .hero .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
@@ -105,13 +113,13 @@
   .proof { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 96px; border-top: 1px solid var(--line); }
   .proof div { padding: 32px 24px 40px 0; }
   .proof div + div { padding-left: 24px; border-left: 1px solid var(--line); }
-  .proof b { display: block; font-size: clamp(2.6rem, 5vw, 4rem); font-weight: 650; letter-spacing: -0.04em; line-height: 1; }
+  .proof b { display: block; font-size: clamp(2.2rem, 4.4vw, 3.4rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
   .proof b.win { color: var(--win); }
   .proof span { display: block; margin-top: 12px; font-size: 15px; color: var(--muted); max-width: 22ch; }
 
   /* C CFD showcase */
   .showcase { display: grid; grid-template-columns: 1fr 1.15fr; gap: 72px; align-items: center; }
-  .big-stat { font-size: clamp(5rem, 14vw, 11rem); font-weight: 650; letter-spacing: -0.06em; line-height: .9; color: var(--accent); margin: 32px 0 8px; }
+  .big-stat { font-size: clamp(4rem, 11vw, 8.5rem); font-weight: 800; letter-spacing: -0.05em; line-height: .9; color: var(--accent); margin: 32px 0 8px; }
   .chart { background: var(--bg); border-radius: 24px; padding: 40px 36px 32px; border: 1px solid var(--line); }
   .chart figcaption { font-size: 15px; color: var(--muted); margin-top: 20px; }
   .bars { display: grid; gap: 28px; }
@@ -135,7 +143,7 @@
   .app:hover { border-color: var(--accent); }
   .viz { height: 168px; margin: -12px -12px 28px; border-radius: 16px; background: var(--surface); display: grid; place-items: center; }
   .viz svg { width: min(78%, 300px); height: auto; overflow: visible; }
-  .viz text { font: 600 11px "Instrument Sans", system-ui, sans-serif; fill: var(--muted); }
+  .viz text { font: 600 10px var(--mono); fill: var(--muted); }
   .viz text.b { fill: var(--text); font-size: 12px; }
   .viz .m { fill: var(--bar); }
   .viz .a { fill: var(--accent); }
@@ -147,7 +155,7 @@
   .viz .grid { stroke: var(--line); stroke-width: 1; fill: none; }
   .viz .line { fill: none; stroke: var(--accent); stroke-width: 2.5; stroke-linejoin: round; }
   .app .kind { font-size: 14px; font-weight: 600; color: var(--muted); }
-  .app h3 { font-size: clamp(1.6rem, 2.6vw, 2.1rem); letter-spacing: -0.03em; margin-top: 10px; }
+  .app h3 { font-size: clamp(1.4rem, 2.2vw, 1.8rem); letter-spacing: -0.02em; margin-top: 10px; }
   .app p { color: var(--muted); }
   .app .meta { margin-top: auto; padding-top: 28px; }
   .stackline { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; color: var(--muted); font-size: 15px; }
@@ -168,14 +176,14 @@
   .building .state { display: inline-flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; color: var(--muted); }
   .building .state i { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--accent); }
   .building p { margin: 0; font-size: 1.15rem; }
-  .building b { font-weight: 650; }
+  .building b { font-weight: 700; }
 
   /* G recognition */
   .rec { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; }
   .rec h3 { font-size: 1.05rem; color: var(--muted); font-weight: 600; letter-spacing: 0; padding-bottom: 16px; border-bottom: 1px solid var(--text); }
   .list { list-style: none; margin: 0; padding: 0; }
   .list li { display: grid; grid-template-columns: 64px 1fr; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
-  .list .place { font-weight: 650; font-variant-numeric: tabular-nums; }
+  .list .place { font-weight: 700; font-variant-numeric: tabular-nums; }
   .list .place.win { color: var(--win); }
   .list.honors li { grid-template-columns: 1fr; gap: 2px; }
   .list small { font-size: 15px; color: var(--muted); }
@@ -192,7 +200,7 @@
   .edu h3 { margin-top: 4px; }
 
   /* I contact */
-  .contact .email { display: inline-block; margin-top: 36px; font-size: clamp(1.7rem, 5vw, 3.6rem); font-weight: 650; letter-spacing: -0.035em; text-decoration: none; word-break: break-word; line-height: 1.1; }
+  .contact .email { display: inline-block; margin-top: 36px; font-size: clamp(1.1rem, 4.2vw, 2.8rem); font-weight: 800; letter-spacing: -0.02em; text-decoration: none; word-break: break-word; line-height: 1.1; }
   .contact .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
   .profiles { display: flex; flex-wrap: wrap; gap: 28px; margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--line); font-weight: 600; }
   .profiles a { text-decoration: none; }
@@ -265,7 +273,7 @@
       <path class="body" d="M196 224 L204 204 Q236 178 286 170 L326 168 Q376 172 404 206 L408 224 Z"/>
       <circle class="body" cx="236" cy="226" r="13"/><circle class="body" cx="372" cy="226" r="13"/>
     </svg>
-    <h1>Daksh Kalra</h1>
+    <h1 class="t-green">Daksh Kalra</h1>
     <p class="eyebrow">Computer Science at ASU Barrett, class of 2030</p>
     <p class="lead">Full-stack web apps in React and Firebase, an aerodynamics study in CFD, and a neural network written from scratch. Looking for a software engineering internship.</p>
     <div class="actions">
@@ -288,7 +296,7 @@
   <span class="tag">C · Showcase: CFD study</span>
   <div class="wrap showcase">
     <div class="reveal">
-      <h2>Cutting drag with vortex generators.</h2>
+      <h2 class="t-yellow">Cutting drag with vortex generators.</h2>
       <div class="big-stat">−11%</div>
       <p class="lead">An independent CFD study on the DrivAer fastback car model. I tested several vortex-generator placements against a baseline to find where they actually reduce drag.</p>
       <div class="meta"><span class="pill">SimScale</span><span class="pill">CFD simulation</span><span class="pill">Independent research</span></div>
@@ -315,14 +323,14 @@
   <span class="tag">D · FBLA apps: award-first cards</span>
   <div class="wrap">
     <div class="section-head reveal">
-      <h2>Four apps. Every one placed.</h2>
+      <h2 class="t-green">Four apps. Every one placed.</h2>
       <p class="lead">Full-stack web apps I built solo for FBLA programming events. Each placed at the State or National level.</p>
     </div>
     <div class="apps">
       <article class="app reveal"><div class="viz"><svg viewBox="0 0 240 120" aria-hidden="true"><line class="dash" x1="12" y1="40" x2="228" y2="40"/><text x="228" y="32" text-anchor="end">Budget</text>
 <rect class="m" x="20" y="62" width="20" height="46" rx="4"/><rect class="m" x="50" y="50" width="20" height="58" rx="4"/><rect class="m" x="80" y="72" width="20" height="36" rx="4"/><rect class="a" x="110" y="30" width="20" height="78" rx="4"/><rect class="m" x="140" y="58" width="20" height="50" rx="4"/><rect class="m" x="170" y="68" width="20" height="40" rx="4"/><rect class="m" x="200" y="54" width="20" height="54" rx="4"/></svg></div><span class="kind">Personal finance</span><h3>Balance Check</h3><p>Budgeting app with an AI chatbot for spending insights and OCR receipt scanning that logs transactions automatically.</p><div class="meta"><span class="pill">AI chatbot</span><span class="pill">OCR</span></div></article>
-      <article class="app reveal"><div class="viz"><svg viewBox="0 0 240 120" aria-hidden="true"><rect class="card" x="8" y="34" width="88" height="52" rx="10"/><text x="20" y="56">Lost</text><text class="b" x="20" y="74">Blue backpack</text>
-<rect class="card" x="144" y="34" width="88" height="52" rx="10"/><text x="156" y="56">Found</text><text class="b" x="156" y="74">Blue backpack</text>
+      <article class="app reveal"><div class="viz"><svg viewBox="0 0 240 120" aria-hidden="true"><rect class="card" x="8" y="34" width="88" height="52" rx="10"/><text x="20" y="56">Lost</text><text class="b" x="20" y="74">Backpack</text>
+<rect class="card" x="144" y="34" width="88" height="52" rx="10"/><text x="156" y="56">Found</text><text class="b" x="156" y="74">Backpack</text>
 <line class="link" x1="96" y1="60" x2="144" y2="60"/><circle class="a" cx="120" cy="60" r="12"/><path class="tick" d="M114 60 l4 4 l8 -8"/></svg></div><span class="kind">Lost and found</span><h3>FoundIt</h3><p>Matches a lost-item report to the closest found item, with in-app chat so people can arrange the handoff.</p><div class="meta"><span class="pill">Matching algorithm</span><span class="pill">In-app chat</span></div></article>
       <article class="app reveal"><div class="viz"><svg viewBox="0 0 240 120" aria-hidden="true"><path class="grid" d="M0 30 H240 M0 70 H240 M0 105 H240 M50 0 V120 M120 0 V120 M190 0 V120"/>
 <path class="m" d="M60 58 a12 12 0 1 1 24 0 c0 10 -12 22 -12 22 s-12 -12 -12 -22z"/><path class="a" d="M118 44 a14 14 0 1 1 28 0 c0 12 -14 26 -14 26 s-14 -14 -14 -26z"/><path class="m" d="M168 84 a12 12 0 1 1 24 0 c0 10 -12 22 -12 22 s-12 -12 -12 -22z"/>
@@ -339,7 +347,7 @@
   <span class="tag">E · CAD: real 3D models, click to load</span>
   <div class="wrap">
     <div class="section-head reveal">
-      <h2>Designed in 3D.</h2>
+      <h2 class="t-red">Designed in 3D.</h2>
       <p class="lead">Parts I modeled in Fusion 360. Open either one to spin it around.</p>
     </div>
     <div class="cad">
@@ -376,7 +384,7 @@
   <span class="tag">G · Recognition: dense list</span>
   <div class="wrap">
     <div class="section-head reveal">
-      <h2>Recognition.</h2>
+      <h2 class="t-yellow">Recognition.</h2>
       <p class="lead">Competition results and honors from high school.</p>
     </div>
     <div class="rec">
@@ -410,7 +418,7 @@
   <span class="tag">H · Skills + education</span>
   <div class="wrap two">
     <div class="reveal">
-      <h2>Skills.</h2>
+      <h2 class="t-green">Skills.</h2>
       <div class="skills">
         <div><span class="lvl">Proficient</span><div class="meta"><span class="pill">Java (certified)</span><span class="pill">Python</span><span class="pill">JavaScript</span><span class="pill">React</span></div></div>
         <div><span class="lvl">Familiar</span><div class="meta"><span class="pill">HTML/CSS</span><span class="pill">Git</span><span class="pill">Firebase</span></div></div>
@@ -418,7 +426,7 @@
       </div>
     </div>
     <div class="reveal">
-      <h2>Education.</h2>
+      <h2 class="t-red">Education.</h2>
       <ul class="edu">
         <li><span class="yr">2026 to 2030</span><h3>B.S. Computer Science</h3><p class="muted">Arizona State University, Barrett, The Honors College</p></li>
         <li><span class="yr">2026</span><h3>Valedictorian</h3><p class="muted">Sandra Day O'Connor High School</p></li>
@@ -431,7 +439,7 @@
 <section id="contact" class="contact">
   <span class="tag">I · Contact</span>
   <div class="wrap reveal">
-    <h2>Let's talk.</h2>
+    <h2 class="t-green">Let's talk.</h2>
     <p class="lead">Hiring for an internship, building something, or want to talk code? Email is the fastest way to reach me.</p>
     <a class="email" href="mailto:daksh.kalra777@gmail.com">daksh.kalra777@gmail.com</a>
     <div class="actions">
