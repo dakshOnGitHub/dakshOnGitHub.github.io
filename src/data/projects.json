@@ -51,7 +51,7 @@
   {
     "title": "The Octagon: an AI-prompting experiment",
     "year": "2026",
-    "status": "in progress",
+    "status": "complete",
     "summary": "A one-page 3D portfolio where the whole screen is a rotating MMA octagon and two fighters spar in the middle. I wrote the specs and directed every iteration; the code was written by an AI coding assistant (Claude Code).",
     "highlight": "My part was the direction and the QA: specifying how strikes, kicks, defence and a hurt fighter should look, then catching what was wrong in each build, like fighters snapping between poses after every punch, until it moved like a real fight.",
     "stack": [
