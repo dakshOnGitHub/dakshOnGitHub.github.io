@@ -58,6 +58,16 @@
       "Three.js",
       "JavaScript",
       "Claude Code"
+    ],
+    "links": [
+      {
+        "label": "Live demo",
+        "url": "https://dakshongithub.github.io/AI-prompting-project/"
+      },
+      {
+        "label": "Code",
+        "url": "https://github.com/dakshOnGitHub/AI-prompting-project"
+      }
     ]
   }
 ]
