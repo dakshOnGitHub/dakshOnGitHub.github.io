@@ -1,6 +1,7 @@
 [
   {
     "title": "FBLA competition apps",
+    "level": "high school",
     "status": "shipped",
     "summary": "Four full-stack web apps I built solo for FBLA programming events. Every one placed at the state or national level.",
     "items": [
@@ -31,6 +32,7 @@
   },
   {
     "title": "Neural network from scratch",
+    "level": "college",
     "year": "2026",
     "status": "in progress",
     "summary": "A neural network written in plain Python, with no ML libraries: forward pass, backpropagation, and gradient descent built by hand.",
@@ -41,6 +43,7 @@
   },
   {
     "title": "Drag reduction with vortex generators",
+    "level": "high school",
     "status": "complete",
     "summary": "An independent CFD study on the DrivAer fastback car model, testing where vortex generators actually reduce drag.",
     "highlight": "Compared several placements against a baseline; the best configuration cut the average drag coefficient by about 11%.",
@@ -50,6 +53,7 @@
   },
   {
     "title": "The Octagon: an AI-prompting experiment",
+    "level": "college",
     "year": "2026",
     "status": "complete",
     "summary": "A one-page 3D portfolio where the whole screen is a rotating MMA octagon and two fighters spar in the middle. I wrote the specs and directed every iteration; the code was written by an AI coding assistant (Claude Code).",

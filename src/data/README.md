@@ -23,6 +23,7 @@ Starts as `[]`. The **Projects** section stays hidden until the array has at lea
 ]
 ```
 
+- `level`: `"college"` or `"high school"`. The section shows College projects first, then High school projects. A project with no `level` goes under High school.
 - `status`: `"shipped"` or `"in progress"`.
 - `highlight`, `links` and `items` are optional. `items` is a list of `{ "name", "desc" }` for grouping several small apps under one card.
 - Order in the array = order on the page. Put your best one first.
