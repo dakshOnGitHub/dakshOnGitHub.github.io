@@ -21,7 +21,13 @@
         "desc": "Tracks GPA over time and recommends resources to help students raise their grades."
       }
     ],
-    "stack": ["React", "JavaScript", "Firebase", "HTML/CSS", "Git"]
+    "stack": [
+      "React",
+      "JavaScript",
+      "Firebase",
+      "HTML/CSS",
+      "Git"
+    ]
   },
   {
     "title": "Neural network from scratch",
@@ -29,13 +35,29 @@
     "status": "in progress",
     "summary": "A neural network written in plain Python, with no ML libraries: forward pass, backpropagation, and gradient descent built by hand.",
     "highlight": "The point is to understand what a framework does under the hood before relying on one.",
-    "stack": ["Python"]
+    "stack": [
+      "Python"
+    ]
   },
   {
     "title": "Drag reduction with vortex generators",
     "status": "complete",
     "summary": "An independent CFD study on the DrivAer fastback car model, testing where vortex generators actually reduce drag.",
     "highlight": "Compared several placements against a baseline; the best configuration cut the average drag coefficient by about 11%.",
-    "stack": ["CFD simulation"]
+    "stack": [
+      "CFD simulation"
+    ]
+  },
+  {
+    "title": "The Octagon: an AI-prompting experiment",
+    "year": "2026",
+    "status": "in progress",
+    "summary": "A one-page 3D portfolio where the whole screen is a rotating MMA octagon and two fighters spar in the middle. I wrote the specs and directed every iteration; the code was written by an AI coding assistant (Claude Code).",
+    "highlight": "My part was the direction and the QA: specifying how strikes, kicks, defence and a hurt fighter should look, then catching what was wrong in each build, like fighters snapping between poses after every punch, until it moved like a real fight.",
+    "stack": [
+      "Three.js",
+      "JavaScript",
+      "Claude Code"
+    ]
   }
 ]
