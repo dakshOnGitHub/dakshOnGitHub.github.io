@@ -36,6 +36,11 @@
   ],
   "awards": [
     {
+      "place": "2nd",
+      "event": "Coding in Color Learn",
+      "where": "Opportunity Hack"
+    },
+    {
       "place": "1st",
       "event": "Virtual Business Challenge (13th nationally)",
       "where": "FBLA State"

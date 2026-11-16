@@ -31,6 +31,20 @@
     ]
   },
   {
+    "title": "Coding in Color Learn",
+    "level": "college",
+    "year": "2026",
+    "status": "2nd place",
+    "summary": "A self-paced CS and AI lesson platform for Coding in Color, an Arizona nonprofit, built by our team at Opportunity Hack. Students join with a class code, no account needed; teachers create a class, upload a roster, and pick modules.",
+    "highlight": "Every module runs warm-up, slides, a quick check, practice, an exit question and a wrap-up, so the app can measure learning gain (wrap-up score minus warm-up score) per student and per class, and flag students who are stuck.",
+    "links": [
+      {
+        "label": "Live demo",
+        "url": "https://cic-learn-rouge.vercel.app/"
+      }
+    ]
+  },
+  {
     "title": "Neural network from scratch",
     "level": "college",
     "year": "2026",
